@@ -15,7 +15,7 @@ export default function Legal() {
   <p><strong>Statut :</strong> Site personnel – étudiant BTS SIO SISR</p>
   <p><strong>Localisation :</strong> Trappes (78), France</p>
   <p><strong>Email :</strong> chamsabbassi78@gmail.com</p>
-  <p><strong>Hébergement :</strong> [À définir – hébergeur cloud à préciser lors mise en ligne]</p>
+  <p><strong>Hébergement :</strong> Vercel</p>
 </section>
 
 <section class="page-content glass">
@@ -70,9 +70,9 @@ export default function Legal() {
 
 <section class="page-content glass">
   <h2>🍪 Cookies et tracking</h2>
-  <p><strong>Politique cookies :</strong> Ce site n'utilise PAS de cookies de tracking ou publicités.</p>
-  <p><strong>Analytics :</strong> [À préciser si Google Analytics ou similaire intégré après mise en ligne]</p>
-  <p><strong>Vos droits :</strong> Vous pouvez désactiver cookies navigateur sans impact fonctionnalité site.</p>
+  <p><strong>Politique cookies :</strong> Ce site n'utilise aucun cookie de suivi, publicité ou mesure d'audience. Aucun outil d'analytics n'est intégré.</p>
+  <p><strong>Cookies techniques :</strong> Le site ne dépose volontairement aucun cookie. Seuls des cookies strictement nécessaires au fonctionnement de votre navigateur peuvent exister selon votre configuration.</p>
+  <p><strong>Vos droits :</strong> Vous pouvez configurer votre navigateur pour bloquer les cookies ; cela n'affecte pas la consultation de ce site.</p>
 </section>
 
 <section class="page-content glass">
