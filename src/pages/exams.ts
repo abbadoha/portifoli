@@ -8,24 +8,24 @@ export default function Exams() {
     <div class="e5-hero-grid">
       <div class="e5-hero-copy">
         <span class="e5-badge">BTS SIO SISR</span>
-        <h1>Épreuve E5</h1>
+        <h1>Épreuve E6</h1>
         <p>Situations professionnelles, projets, compétences mobilisées et preuves associées pendant ma formation BTS SIO SISR.</p>
-        <p>Cette page présente les situations professionnelles, projets et compétences que je peux mobiliser dans le cadre de l’épreuve E5.</p>
-        <div class="e5-pill-row" aria-label="Axes E5">
+        <p>Cette page présente les situations professionnelles, projets et compétences que je peux mobiliser dans le cadre de l’épreuve E6.</p>
+        <div class="e5-pill-row" aria-label="Axes E6">
           <span>Situations professionnelles</span>
           <span>Compétences mobilisées</span>
           <span>Documents / preuves</span>
         </div>
       </div>
       <div class="e5-hero-visual" aria-hidden="true">
-        <img src="/assets/img/documentation.png" alt="Illustration dossier et soutenance E5" loading="lazy" />
+        <img src="/assets/img/documentation.png" alt="Illustration dossier et soutenance E6" loading="lazy" />
       </div>
     </div>
   </section>
 
   <section class="page-content glass">
-    <h2>Comprendre l’épreuve E5</h2>
-    <p>L’E5 évalue des situations professionnelles en lien avec l’option SISR. La présentation attend des contextes réels ou cohérents, des actions clairement expliquées, des compétences identifiées et des preuves associées. L’objectif est de rester structuré, concret et justifié devant le jury.</p>
+    <h2>Comprendre l’épreuve E6</h2>
+    <p>L’E6 évalue des situations professionnelles en lien avec l’option SISR. La présentation attend des contextes réels ou cohérents, des actions clairement expliquées, des compétences identifiées et des preuves associées. L’objectif est de rester structuré, concret et justifié devant le jury.</p>
     <div class="e5-mini-grid">
       <article class="e5-card">
         <h3>Situations analysées</h3>
@@ -43,7 +43,7 @@ export default function Exams() {
   </section>
 
   <section class="page-content glass">
-    <h2>Mes contextes retenus pour l’E5</h2>
+    <h2>Mes contextes retenus pour l’E6</h2>
     <div class="e5-context-grid">
       <article class="e5-card e5-context-card">
         <header>
@@ -55,7 +55,7 @@ export default function Exams() {
         <p><strong>Compétences mobilisées :</strong> support, droits d’accès, déploiement, suivi des incidents.</p>
         <div class="e5-actions">
           <a href="/#/stages" class="btn btn-primary">Voir le détail</a>
-          <a href="/#/downloads" class="e5-btn-secondary">Voir les preuves</a>
+          <a href="/#/documentation" class="e5-btn-secondary">Voir les preuves</a>
         </div>
       </article>
 
@@ -69,7 +69,7 @@ export default function Exams() {
         <p><strong>Compétences mobilisées :</strong> déploiement, configuration, documentation, supervision.</p>
         <div class="e5-actions">
           <a href="/#/projects" class="btn btn-primary">Voir le détail</a>
-          <a href="/#/downloads" class="e5-btn-secondary">Voir les preuves</a>
+          <a href="/#/documentation" class="e5-btn-secondary">Voir les preuves</a>
         </div>
       </article>
 
@@ -83,7 +83,7 @@ export default function Exams() {
         <p><strong>Compétences mobilisées :</strong> architecture réseau, sécurité, paramétrage, tests.</p>
         <div class="e5-actions">
           <a href="/#/projects" class="btn btn-primary">Voir le détail</a>
-          <a href="/#/downloads" class="e5-btn-secondary">Voir les preuves</a>
+          <a href="/#/documentation" class="e5-btn-secondary">Voir les preuves</a>
         </div>
       </article>
 
@@ -97,7 +97,7 @@ export default function Exams() {
         <p><strong>Compétences mobilisées :</strong> administration, sécurisation, diagnostic, documentation.</p>
         <div class="e5-actions">
           <a href="/#/projects" class="btn btn-primary">Voir le détail</a>
-          <a href="/#/downloads" class="e5-btn-secondary">Voir les preuves</a>
+          <a href="/#/documentation" class="e5-btn-secondary">Voir les preuves</a>
         </div>
       </article>
     </div>
@@ -187,10 +187,10 @@ export default function Exams() {
 
     <article class="e5-card e5-synthesis-card">
       <header>
-        <h3>Tableau de synthèse E5</h3>
+        <h3>Tableau de synthèse E6</h3>
       </header>
       <p class="e5-synthesis-subtitle">Document obligatoire de l’épreuve</p>
-      <div class="e5-doc-preview-wrap" aria-label="Aperçu du tableau de synthèse E5">
+      <div class="e5-doc-preview-wrap" aria-label="Aperçu du tableau de synthèse E6">
         <iframe src="/assets/docs/pro.pdf" title="Aperçu du document pro.pdf" loading="lazy" class="e5-doc-preview-frame"></iframe>
       </div>
       <p>Ce document regroupe les situations professionnelles et les compétences associées.</p>
@@ -210,8 +210,8 @@ export default function Exams() {
         <span class="accordion-icon">+</span>
       </button>
       <div class="accordion-content e5-doc-list">
-        <article class="e5-doc-row"><div><strong>Fiche situation – Stage DSI</strong><small>Type : fiche</small></div><div class="e5-doc-actions"><a href="/#/downloads">Consulter</a><a href="/#/downloads">Télécharger</a></div></article>
-        <article class="e5-doc-row"><div><strong>Fiche situation – Soccer78</strong><small>Type : fiche</small></div><div class="e5-doc-actions"><a href="/#/downloads">Consulter</a><a href="/#/downloads">Télécharger</a></div></article>
+        <article class="e5-doc-row"><div><strong>Fiche situation – Stage DSI</strong><small>Type : fiche</small></div><div class="e5-doc-actions"><a href="/#/documentation">Consulter</a><a href="/#/documentation">Télécharger</a></div></article>
+        <article class="e5-doc-row"><div><strong>Fiche situation – Soccer78</strong><small>Type : fiche</small></div><div class="e5-doc-actions"><a href="/#/documentation">Consulter</a><a href="/#/documentation">Télécharger</a></div></article>
       </div>
     </div>
 
@@ -221,8 +221,8 @@ export default function Exams() {
         <span class="accordion-icon">+</span>
       </button>
       <div class="accordion-content e5-doc-list">
-        <article class="e5-doc-row"><div><strong>Rapport de stage</strong><small>Type : rapport</small></div><div class="e5-doc-actions"><a href="/#/downloads">Consulter</a><a href="/#/downloads">Télécharger</a></div></article>
-        <article class="e5-doc-row"><div><strong>Compte rendu technique GSB</strong><small>Type : compte rendu</small></div><div class="e5-doc-actions"><a href="/#/downloads">Consulter</a><a href="/#/downloads">Télécharger</a></div></article>
+        <article class="e5-doc-row"><div><strong>Rapport de stage</strong><small>Type : rapport</small></div><div class="e5-doc-actions"><a href="/#/documentation">Consulter</a><a href="/#/documentation">Télécharger</a></div></article>
+        <article class="e5-doc-row"><div><strong>Compte rendu technique GSB</strong><small>Type : compte rendu</small></div><div class="e5-doc-actions"><a href="/#/documentation">Consulter</a><a href="/#/documentation">Télécharger</a></div></article>
       </div>
     </div>
 
@@ -232,8 +232,8 @@ export default function Exams() {
         <span class="accordion-icon">+</span>
       </button>
       <div class="accordion-content e5-doc-list">
-        <article class="e5-doc-row"><div><strong>Convention de stage</strong><small>Type : administratif</small></div><div class="e5-doc-actions"><a href="/#/downloads">Consulter</a><a href="/#/downloads">Télécharger</a></div></article>
-        <article class="e5-doc-row"><div><strong>Attestation de stage</strong><small>Type : administratif</small></div><div class="e5-doc-actions"><a href="/#/downloads">Consulter</a><a href="/#/downloads">Télécharger</a></div></article>
+        <article class="e5-doc-row"><div><strong>Convention de stage</strong><small>Type : administratif</small></div><div class="e5-doc-actions"><a href="/#/documentation">Consulter</a><a href="/#/documentation">Télécharger</a></div></article>
+        <article class="e5-doc-row"><div><strong>Attestation de stage</strong><small>Type : administratif</small></div><div class="e5-doc-actions"><a href="/#/documentation">Consulter</a><a href="/#/documentation">Télécharger</a></div></article>
       </div>
     </div>
 
@@ -243,18 +243,18 @@ export default function Exams() {
         <span class="accordion-icon">+</span>
       </button>
       <div class="accordion-content e5-doc-list">
-        <article class="e5-doc-row"><div><strong>Schéma réseau Soccer78</strong><small>Type : annexe</small></div><div class="e5-doc-actions"><a href="/#/downloads">Consulter</a><a href="/#/downloads">Télécharger</a></div></article>
-        <article class="e5-doc-row"><div><strong>Procédure de déploiement</strong><small>Type : annexe</small></div><div class="e5-doc-actions"><a href="/#/downloads">Consulter</a><a href="/#/downloads">Télécharger</a></div></article>
+        <article class="e5-doc-row"><div><strong>Schéma réseau Soccer78</strong><small>Type : annexe</small></div><div class="e5-doc-actions"><a href="/#/documentation">Consulter</a><a href="/#/documentation">Télécharger</a></div></article>
+        <article class="e5-doc-row"><div><strong>Procédure de déploiement</strong><small>Type : annexe</small></div><div class="e5-doc-actions"><a href="/#/documentation">Consulter</a><a href="/#/documentation">Télécharger</a></div></article>
       </div>
     </div>
 
     <div class="accordion" id="e5-doc-grilles">
       <button class="accordion-trigger" data-accordion="e5-doc-grilles">
-        Documents E5 / grilles / tableau de synthèse
+        Documents E6 / grilles / tableau de synthèse
         <span class="accordion-icon">+</span>
       </button>
       <div class="accordion-content e5-doc-list">
-        <article class="e5-doc-row"><div><strong>Grille de compétences E5</strong><small>Type : E5</small></div><div class="e5-doc-actions"><a href="/#/downloads">Consulter</a><a href="/#/downloads">Télécharger</a></div></article>
+        <article class="e5-doc-row"><div><strong>Grille de compétences E6</strong><small>Type : E6</small></div><div class="e5-doc-actions"><a href="/#/documentation">Consulter</a><a href="/#/documentation">Télécharger</a></div></article>
       </div>
     </div>
   </section>
@@ -270,7 +270,7 @@ export default function Exams() {
     <div class="e5-actions e5-closing-actions">
       <a href="/#/skills" class="btn btn-primary">Voir mes compétences</a>
       <a href="/#/projects" class="e5-btn-secondary">Voir mes projets</a>
-      <a href="/#/downloads" class="e5-btn-secondary">Voir mes téléchargements</a>
+      <a href="/#/documentation" class="e5-btn-secondary">Voir ma documentation</a>
     </div>
   </section>
 </section>

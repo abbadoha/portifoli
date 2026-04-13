@@ -67,9 +67,9 @@ export default function NotFound() {
         Épreuves
       </div>
     </a>
-    <a href="/#/downloads" style="text-decoration: none; color: inherit;">
+    <a href="/#/documentation" style="text-decoration: none; color: inherit;">
       <div class="glass-panel" style="padding: 1rem; text-align: center; border-radius: 12px;">
-        Téléchargements
+        Documentation
       </div>
     </a>
     <a href="/#/contact" style="text-decoration: none; color: inherit;">

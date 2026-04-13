@@ -15,7 +15,7 @@ import Watch from '../pages/watch';
 import BtsSio from '../pages/bts-sio';
 import Programme from '../pages/programme';
 import Exams from '../pages/exams';
-import Downloads from '../pages/downloads';
+import Downloads, { setupDocumentationInteractions } from '../pages/downloads';
 import Contact from '../pages/contact';
 import Legal from '../pages/legal';
 import NotFound from '../pages/notfound';
@@ -42,7 +42,8 @@ const routes: Route[] = [
   { path: '/bts-sio', title: 'BTS SIO', render: BtsSio },
   { path: '/programme', title: 'Programme & Projets', render: Programme },
   { path: '/exams', title: 'Épreuves', render: Exams },
-  { path: '/downloads', title: 'Téléchargements', render: Downloads },
+  { path: '/documentation', title: 'Documentation', render: Downloads, setup: setupDocumentationInteractions },
+  { path: '/downloads', title: 'Documentation', render: Downloads, setup: setupDocumentationInteractions },
   { path: '/contact', title: 'Contact', render: Contact },
   { path: '/legal', title: 'Mentions légales', render: Legal },
 ];

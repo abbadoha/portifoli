@@ -321,7 +321,7 @@ export default function Skills() {
           <div class="skills-clean-links">
             ${Button({ label: 'Voir mes projets', href: '/#/projects', variant: 'primary' })}
             ${Button({ label: 'Voir mon stage', href: '/#/stages', variant: 'outline' })}
-            ${Button({ label: 'Voir les telechargements', href: '/#/downloads', variant: 'outline' })}
+            ${Button({ label: 'Voir la documentation', href: '/#/documentation', variant: 'outline' })}
           </div>
         </div>
       </section>

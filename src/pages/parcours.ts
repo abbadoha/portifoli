@@ -50,21 +50,51 @@ export default function Parcours() {
     {
       key: 'stage',
       label: 'Stage',
-      period: 'Mai – juillet 2025',
-      title: 'Stage en DSI - Mairie de Trappes',
-      meta: 'DSI de la Mairie de Trappes · Immersion en environnement réel',
-      context: 'Le stage me fait découvrir le fonctionnement concret d’un service informatique de collectivité.',
+      period: 'Mai – Juin 2025',
+      title: 'Stage DSI — Mairie de Trappes',
+      meta: 'Stage en environnement informatique — support, systèmes et gestion du parc',
+      context: 'Stage au sein de la Direction des Systèmes d’Information de la mairie de Trappes. Intervention dans un environnement réel avec des utilisateurs, un parc informatique et des postes à maintenir.',
       image: '/assets/img/stage_it.png',
       alt: 'Illustration de stage en environnement informatique',
       did: [
-        'Support de proximité auprès des agents',
-        'Gestion de comptes, postes et droits d’accès',
-        'Suivi d’interventions dans un SI de collectivité'
+        'Support utilisateurs (diagnostic, dépannage, assistance)',
+        'Gestion des comptes et droits d’accès',
+        'Installation et configuration de postes (Windows)',
+        'Intervention sur le matériel (mini PC, périphériques)',
+        'Suivi du parc informatique et maintenance de base'
       ],
       developed: [
-        'Comprendre l’organisation d’une DSI publique',
-        'Communiquer plus clairement avec les utilisateurs',
-        'Gagner en autonomie sur des demandes courantes'
+        'Appliquer une méthode de diagnostic simple',
+        'Comprendre les besoins utilisateurs',
+        'Travailler dans un environnement professionnel structuré',
+        'Respecter les procédures et la sécurité des accès',
+        'Gagner en autonomie et en rigueur'
+      ],
+      link: '/#/stages',
+      linkLabel: 'Voir le stage détaillé'
+    },
+    {
+      key: 'stage-it',
+      label: 'Stage IT',
+      period: 'Janvier – Mars 2026',
+      title: 'Stage informatique — environnement systèmes et réseau',
+      meta: 'Stage orienté administration systèmes, réseau et sécurité',
+      context: 'Stage réalisé en environnement informatique avec des missions orientées systèmes, réseau et bonnes pratiques de sécurité. Travail sur des postes, services et configurations techniques.',
+      image: '/assets/img/video_it.png',
+      alt: 'Illustration stage informatique orienté systèmes et réseau',
+      did: [
+        'Configuration de postes et services informatiques',
+        'Participation à des tâches d’administration systèmes',
+        'Manipulation d’environnements réseau simples',
+        'Vérification de configurations et tests',
+        'Application de bonnes pratiques de sécurité'
+      ],
+      developed: [
+        'Approfondir la configuration des systèmes',
+        'Comprendre l’impact des réglages réseau',
+        'Appliquer des notions de sécurité concrètes',
+        'Structurer une intervention technique',
+        'Gagner en autonomie sur des tâches techniques'
       ],
       link: '/#/stages',
       linkLabel: 'Voir le stage détaillé'
@@ -87,26 +117,6 @@ export default function Parcours() {
         'Repérer plus vite les situations à risque',
         'Appliquer des réflexes de prévention au quotidien',
         'Mieux expliquer les bonnes pratiques autour de moi'
-      ]
-    },
-    {
-      key: 'surete',
-      label: 'Sûreté',
-      period: 'Déc. 2025 – Janv. 2026',
-      title: 'Mission de sûreté - Château de Versailles',
-      meta: 'Mission ponctuelle · Environnement exigeant',
-      context: 'Cette mission n’était pas technique, mais elle m’a appris à rester rigoureuse et vigilante dans un cadre strict.',
-      image: '/assets/img/video_it.png',
-      alt: 'Illustration mission de sûreté et environnement sensible',
-      did: [
-        'Application de consignes strictes dans un environnement sensible',
-        'Surveillance active et remontée d’informations si nécessaire',
-        'Travail en équipe avec une vigilance continue'
-      ],
-      developed: [
-        'Rester concentrée sur la durée',
-        'Travailler avec discipline et régularité',
-        'Garder une attitude professionnelle en toute situation'
       ]
     },
     {
@@ -161,10 +171,10 @@ export default function Parcours() {
     {
       key: 'polyvalence',
       image: '/assets/img/poly_it.png',
-      alt: 'Icône polyvalence',
-      label: 'Posture',
-      title: 'Autonomie et rigueur',
-      text: 'Je suis plus à l’aise dans un cadre professionnel, avec davantage d’autonomie et de régularité.'
+      alt: 'Icône expérience systèmes et support',
+      label: 'Systèmes / Support / Réseau',
+      title: 'Expérience systèmes & support',
+      text: 'Suivi d’un environnement poste et utilisateur en conditions réelles. Interventions sur des postes, gestion des accès et support quotidien.'
     }
   ];
 

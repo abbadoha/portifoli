@@ -123,8 +123,12 @@ export default function Profile() {
     ],
   });
 
-  const environmentCard = (image: string, alt: string, title: string, description: string, hint: string) => `
-    <article class="environment-focus-card glass reveal" data-spotlight data-tilt-card>
+  const environmentCard = (image: string, alt: string, title: string, description: string, hint: string, href?: string) => {
+    const tag = href ? 'a' : 'article';
+    const linkAttrs = href ? ` href="${href}"` : '';
+
+    return `
+    <${tag} class="environment-focus-card glass reveal" data-spotlight data-tilt-card${linkAttrs}>
       <div class="environment-focus-media">
         <img src="${image}" alt="${alt}" />
       </div>
@@ -135,8 +139,9 @@ export default function Profile() {
         </div>
         <p>${description}</p>
       </div>
-    </article>
+    </${tag}>
   `;
+  };
 
   const targetCard = (step: string, image: string, alt: string, title: string, description: string, tone = '') => `
     <article class="target-card glass reveal ${tone}" data-spotlight data-tilt-card>
@@ -314,7 +319,7 @@ export default function Profile() {
         ${environmentCard('/assets/img/network-diagram.png', 'Services réseau', 'Services réseau', 'DNS, DHCP, segmentation et compréhension de la circulation des flux.', 'Services utiles')}
         ${environmentCard('/assets/img/firewall.png', 'Sécurisation des accès', 'Sécurisation', 'Pare-feu, filtrage, contrôle des accès et bonnes pratiques de protection.', 'Accès protégés')}
         ${environmentCard('/assets/img/virtualization.png', 'Virtualisation et machines virtuelles', 'Virtualisation', 'Environnements de test, déploiements et prise en main d’infrastructures virtualisées.', 'Tests & VM')}
-        ${environmentCard('/assets/img/documentation.png', 'Documentation technique', 'Documentation', 'Procédures, comptes rendus, schémas et supports utiles pour le suivi.', 'Traçabilité')}
+        ${environmentCard('/assets/img/documentation.png', 'Documentation technique', 'Documentation', 'Procédures, comptes rendus, schémas et supports utiles pour le suivi.', 'Traçabilité', '/#/documentation')}
         ${environmentCard('/assets/img/troubleshooting.png', 'Résolution de problèmes', 'Résolution de problèmes', 'Analyser une cause, tester, isoler l’erreur et rétablir un fonctionnement stable.', 'Diagnostic')}
       </div>
     </div>

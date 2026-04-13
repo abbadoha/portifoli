@@ -341,7 +341,7 @@ export default function Stages() {
     <div class="stage-final-actions">
       <a href="/#/skills" class="btn btn-primary">Voir mes competences</a>
       <a href="/#/parcours" class="btn btn-outline">Voir mon parcours</a>
-      <a href="/#/downloads" class="btn btn-outline">Acceder aux telechargements</a>
+      <a href="/#/documentation" class="btn btn-outline">Acceder a la documentation</a>
     </div>
   </section>
 </div>

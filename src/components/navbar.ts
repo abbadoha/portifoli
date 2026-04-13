@@ -11,8 +11,8 @@ export function renderNavbar() {
     { path: '/projects', label: 'Projets' },
     { path: '/watch', label: 'Veille' },
     { path: '/bts-sio', label: 'BTS SIO' },
-    { path: '/exams', label: 'Épreuve E5' },
-    { path: '/downloads', label: 'Téléchargements' },
+    { path: '/exams', label: 'Épreuve E6' },
+    { path: '/documentation', label: 'Documentation' },
     { path: '/contact', label: 'Contact' },
   ];
 

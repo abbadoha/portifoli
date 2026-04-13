@@ -36,6 +36,8 @@ const projectDocMap: Record<string, string> = {
   'dhcp-debian': '/assets/img/Consigne%20atelier2%20(3).pdf',
 };
 
+const e5SynthesePdf = '/assets/docs/synthese.pdf';
+
 const formationImageFallback: Record<string, string> = {
   Systeme: '/assets/img/server.png',
   Reseau: '/assets/img/network.png',
@@ -92,7 +94,7 @@ const practiceCards = [
 
 const renderFormationCard = (p: FormationProject) => {
   const img = p.logo ?? formationImageFallback[p.category] ?? '/assets/img/server.png';
-  const reportUrl = projectDocMap[p.id] ?? '/#/downloads';
+  const reportUrl = projectDocMap[p.id] ?? '/#/documentation';
   const reportLabel = projectDocMap[p.id] ? 'Compte rendu' : 'Compte rendu (placeholder)';
 
   return `
@@ -209,8 +211,8 @@ const renderMainDoc = (p: FormationProject) => {
         <p>Compte rendu associe</p>
       </div>
       <div class="proj-card-actions">
-        <a class="proj-btn-detail" href="${reportUrl ?? '/#/downloads'}" target="_blank" rel="noreferrer noopener">Consulter</a>
-        <a class="proj-btn-resource" href="${reportUrl ?? '/#/downloads'}" ${reportUrl ? 'download' : ''} target="_blank" rel="noreferrer noopener">Telecharger</a>
+        <a class="proj-btn-detail" href="${reportUrl ?? '/#/documentation'}" target="_blank" rel="noreferrer noopener">Consulter</a>
+        <a class="proj-btn-resource" href="${reportUrl ?? '/#/documentation'}" ${reportUrl ? 'download' : ''} target="_blank" rel="noreferrer noopener">Telecharger</a>
       </div>
     </article>
   `;
@@ -233,6 +235,36 @@ export default function Projects() {
         <p class="proj-hero-sub">Travaux de formation, contextes techniques et realisations personnelles.</p>
         <p class="proj-hero-intro">Cette page regroupe les projets menes pendant la formation, les comptes rendus associes, les competences mobilisees et quelques realisations personnelles en administration systeme, reseau et cybersecurite.</p>
         <div class="proj-hero-tags">${heroTags.map(tag => Chip({ label: tag })).join(' ')}</div>
+      </section>
+
+      <section class="proj-panel proj-e5-synthese" id="proj-e5-synthese">
+        <div class="proj-e5-grid">
+          <div class="proj-e5-content reveal">
+            <h2>Fiche de synth&egrave;se E6</h2>
+            <p class="proj-e5-sub">Document central pour pr&eacute;senter mes r&eacute;alisations professionnelles, relier mes comp&eacute;tences &agrave; mes projets et pr&eacute;parer la soutenance E6.</p>
+            <p class="proj-e5-text">Cette fiche de synth&egrave;se rassemble les &eacute;l&eacute;ments les plus importants de mon parcours en BTS SIO SISR. Elle me sert de support clair pour pr&eacute;senter mes r&eacute;alisations en stage, en projet et en formation.</p>
+
+            <div class="proj-e5-badges" aria-label="Badges fiche E6">
+              ${Chip({ label: '&Eacute;preuve E6' })}
+              ${Chip({ label: 'Synth&egrave;se officielle' })}
+              ${Chip({ label: 'Support de soutenance' })}
+            </div>
+
+            <div class="proj-card-actions proj-e5-actions">
+              <button type="button" class="proj-btn-detail" data-e5-scroll="preview">Consulter la fiche</button>
+              <a class="proj-btn-resource" href="${e5SynthesePdf}" download target="_blank" rel="noreferrer noopener">T&eacute;l&eacute;charger</a>
+            </div>
+          </div>
+
+          <div class="proj-e5-viewer-wrap reveal" id="proj-e5-preview">
+            <object class="proj-e5-viewer" data="${e5SynthesePdf}#toolbar=0&navpanes=0&view=FitH" type="application/pdf" aria-label="Apercu de la fiche de synthese E6">
+              <div class="proj-e5-fallback">
+                <p>Aper&ccedil;u indisponible, utilisez les boutons ci-dessus pour consulter ou t&eacute;l&eacute;charger la fiche.</p>
+              </div>
+            </object>
+            <p class="proj-e5-note">Ce document compl&egrave;te les projets, stages et comp&eacute;tences pr&eacute;sent&eacute;s dans le portfolio.</p>
+          </div>
+        </div>
       </section>
 
       <section class="proj-panel" id="proj-practice">
@@ -303,7 +335,7 @@ export default function Projects() {
         <div class="proj-cta-links">
           ${Button({ label: 'Voir mes competences', href: '/#/skills', variant: 'primary' })}
           ${Button({ label: 'Voir mon stage', href: '/#/stages', variant: 'outline' })}
-          ${Button({ label: 'Voir les telechargements', href: '/#/downloads', variant: 'outline' })}
+          ${Button({ label: 'Voir la documentation', href: '/#/documentation', variant: 'outline' })}
         </div>
       </section>
 
@@ -322,8 +354,8 @@ export default function Projects() {
                   <span class="proj-report-title">${p.title}</span>
                 </div>
                 <div class="proj-report-actions">
-                  <a class="proj-btn-report" href="/#/downloads">Consulter</a>
-                  <a class="proj-btn-report" href="/#/downloads">Telecharger</a>
+                  <a class="proj-btn-report" href="/#/documentation">Consulter</a>
+                  <a class="proj-btn-report" href="/#/documentation">Telecharger</a>
                 </div>
               </div>
             `).join('')}
@@ -427,6 +459,18 @@ export function setupProjectsInteractions() {
       reportsPanel.hidden = isOpen;
       reportsToggle.setAttribute('aria-expanded', String(!isOpen));
       reportsArrow?.classList.toggle('open', !isOpen);
+    });
+  }
+
+  const e5ScrollBtn = page.querySelector<HTMLButtonElement>('[data-e5-scroll="preview"]');
+  const e5Preview = page.querySelector<HTMLElement>('#proj-e5-preview');
+  if (e5ScrollBtn) {
+    e5ScrollBtn.addEventListener('click', () => {
+      if (e5Preview) {
+        e5Preview.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        return;
+      }
+      window.open(e5SynthesePdf, '_blank', 'noopener,noreferrer');
     });
   }
 }

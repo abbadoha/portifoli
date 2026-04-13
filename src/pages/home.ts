@@ -23,7 +23,7 @@ export default function Home() {
       </div>
       <div class="hero-cta hero-cta-secondary">
         ${Button({ label: 'Veille 5G', href: '/#/watch', variant: 'ghost' })}
-        ${Button({ label: 'Télécharger mon CV', href: '/#/downloads', variant: 'outline' })}
+        ${Button({ label: 'Documentation et CV', href: '/#/documentation', variant: 'outline' })}
       </div>
     </div>
 
@@ -130,37 +130,37 @@ export default function Home() {
   <h2 class="section-title">Compétences clés</h2>
   <p class="section-subtitle">Domaines techniques maîtrisés en SISR</p>
   <div class="skills-grid immersive">
-    <article class="skill-card glass" style="background-image: url('/assets/img/server-rack.png');">
+    <article class="skill-card glass" style="background-image: url('/assets/img/server-rack.png'); cursor: pointer;" onclick="window.location.href='/#/skills'" role="link" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' '){event.preventDefault();window.location.href='/#/skills';}" aria-label="Aller a la page Competences">
       <div class="skill-card-overlay"></div>
       <img src="/assets/img/winserv.png" alt="Windows Server" class="skill-card-logo">
       <h3>Windows Server</h3>
       <p>AD DS, DNS, DHCP, GPO, sécurité et maintenance d'infrastructures.</p>
     </article>
-    <article class="skill-card glass" style="background-image: url('/assets/img/datacenter.png');">
+    <article class="skill-card glass" style="background-image: url('/assets/img/datacenter.png'); cursor: pointer;" onclick="window.location.href='/#/skills'" role="link" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' '){event.preventDefault();window.location.href='/#/skills';}" aria-label="Aller a la page Competences">
       <div class="skill-card-overlay"></div>
       <img src="/assets/img/linux.png" alt="Linux" class="skill-card-logo">
       <h3>Linux & services</h3>
       <p>Debian/Ubuntu, SSH, services web, hardening et administration système.</p>
     </article>
-    <article class="skill-card glass" style="background-image: url('/assets/img/network-map.png');">
+    <article class="skill-card glass" style="background-image: url('/assets/img/network-map.png'); cursor: pointer;" onclick="window.location.href='/#/skills'" role="link" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' '){event.preventDefault();window.location.href='/#/skills';}" aria-label="Aller a la page Competences">
       <div class="skill-card-overlay"></div>
       <img src="/assets/img/network.png" alt="Réseau" class="skill-card-logo">
       <h3>Réseaux</h3>
       <p>VLAN, routage, NAT, segmentation, monitoring et firewalling avancé.</p>
     </article>
-    <article class="skill-card glass" style="background-image: url('/assets/img/cyber-lock.png');">
+    <article class="skill-card glass" style="background-image: url('/assets/img/cyber-lock.png'); cursor: pointer;" onclick="window.location.href='/#/skills'" role="link" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' '){event.preventDefault();window.location.href='/#/skills';}" aria-label="Aller a la page Competences">
       <div class="skill-card-overlay"></div>
       <img src="/assets/img/shield.png" alt="Sécurité" class="skill-card-logo">
       <h3>Cybersécurité</h3>
       <p>Durcissement, pare-feu, analyse de risques et bonnes pratiques ANSSI.</p>
     </article>
-    <article class="skill-card glass" style="background-image: url('/assets/img/cloud-infra.png');">
+    <article class="skill-card glass" style="background-image: url('/assets/img/cloud-infra.png'); cursor: pointer;" onclick="window.location.href='/#/skills'" role="link" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' '){event.preventDefault();window.location.href='/#/skills';}" aria-label="Aller a la page Competences">
       <div class="skill-card-overlay"></div>
       <img src="/assets/img/proxmox.png" alt="Virtualisation" class="skill-card-logo">
       <h3>Virtualisation</h3>
       <p>Proxmox, VMware, lab hyperconvergé et déploiement d'environnements isolés.</p>
     </article>
-    <article class="skill-card glass" style="background-image: url('/assets/img/security-monitor.png');">
+    <article class="skill-card glass" style="background-image: url('/assets/img/security-monitor.png'); cursor: pointer;" onclick="window.location.href='/#/skills'" role="link" tabindex="0" onkeydown="if(event.key==='Enter' || event.key===' '){event.preventDefault();window.location.href='/#/skills';}" aria-label="Aller a la page Competences">
       <div class="skill-card-overlay"></div>
       <img src="/assets/img/glpi.png" alt="ITSM" class="skill-card-logo">
       <h3>ITSM & Documentation</h3>

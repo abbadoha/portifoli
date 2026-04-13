@@ -184,6 +184,7 @@ export function initAllAnimations(): void {
     applyStaggerAnimation('.projects-grid', 80);
     applyStaggerAnimation('.modules-grid', 100);
     applyStaggerAnimation('.downloads-grid', 90);
+    applyStaggerAnimation('.documentation-page .doc-grid', 70);
     applyStaggerAnimation('.about-points', 70);
     applyStaggerAnimation('.profile-tab-cards', 60);
     applyStaggerAnimation('.sisr-static-grid', 80);
