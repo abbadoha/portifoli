@@ -3,156 +3,276 @@
 
 export default function Exams() {
   return `
-<section class="page-hero">
-  <h1>Guide des Épreuves</h1>
-  <p>Comment je me présente aux jurys et what I show</p>
-</section>
+<section class="e5-page">
+  <section class="page-hero e5-hero">
+    <div class="e5-hero-grid">
+      <div class="e5-hero-copy">
+        <span class="e5-badge">BTS SIO SISR</span>
+        <h1>Épreuve E5</h1>
+        <p>Situations professionnelles, projets, compétences mobilisées et preuves associées pendant ma formation BTS SIO SISR.</p>
+        <p>Cette page présente les situations professionnelles, projets et compétences que je peux mobiliser dans le cadre de l’épreuve E5.</p>
+        <div class="e5-pill-row" aria-label="Axes E5">
+          <span>Situations professionnelles</span>
+          <span>Compétences mobilisées</span>
+          <span>Documents / preuves</span>
+        </div>
+      </div>
+      <div class="e5-hero-visual" aria-hidden="true">
+        <img src="/assets/img/documentation.png" alt="Illustration dossier et soutenance E5" loading="lazy" />
+      </div>
+    </div>
+  </section>
 
-<section class="page-content glass">
-  <h2>🎯 Stratégie générale</h2>
-  <p>Les épreuves BTS SIO évaluent capacité à :</p>
-  <ul>
-    <li><strong>Administrer infra IT réelle :</strong> Pas juste théorie, mais cas pratiques scolaires + stage</li>
-    <li><strong>Justifier décisions techniques :</strong> Pourquoi Active Directory plutôt que Samba ? Pourquoi pfSense ?</li>
-    <li><strong>Communiquer clearly :</strong> Expliquer concept technique à non-IT, documenter processus</li>
-    <li><strong>Montrer autonomie :</strong> Résoudre problèmes, rechercher solutions, apprendre tech nouvelle</li>
-  </ul>
-</section>
+  <section class="page-content glass">
+    <h2>Comprendre l’épreuve E5</h2>
+    <p>L’E5 évalue des situations professionnelles en lien avec l’option SISR. La présentation attend des contextes réels ou cohérents, des actions clairement expliquées, des compétences identifiées et des preuves associées. L’objectif est de rester structuré, concret et justifié devant le jury.</p>
+    <div class="e5-mini-grid">
+      <article class="e5-card">
+        <h3>Situations analysées</h3>
+        <p>Contexte, besoin, intervention et résultat observé.</p>
+      </article>
+      <article class="e5-card">
+        <h3>Compétences démontrées</h3>
+        <p>Compétences techniques et méthodologiques liées à chaque cas.</p>
+      </article>
+      <article class="e5-card">
+        <h3>Documents justificatifs</h3>
+        <p>Preuves claires pour appuyer chaque action présentée.</p>
+      </article>
+    </div>
+  </section>
 
-<section class="page-content glass">
-  <h2>📋 Épreuves principales</h2>
-  
-  <div class="accordion" id="exam-stage">
-    <button class="accordion-trigger" data-accordion="exam-stage">
-      🏢 Épreuve Stage (rapport + soutenance)
-      <span class="accordion-icon">+</span>
-    </button>
-    <div class="accordion-content">
-      <p><strong>Durée :</strong> 3–4 mois (mai–juillet 2025 pour moi)</p>
-      <p><strong>Évaluation :</strong> Rapport écrit (10–15 pages) + présentation oral (15 min) + questions jury</p>
-      <p><strong>Ce que je montre :</strong></p>
-      <ul>
-        <li>Contexte Mairie (infra, utilisateurs, enjeux)</li>
-        <li>Missions effectuées (admin AD, support utilisateurs, infrastructure)</li>
-        <li>Problèmes résolus (incident, ticket, amélioration)</li>
-        <li>Résultats mesurables (tickets fermés, services opérationnels, temps d'intervention)</li>
-        <li>Apprentissages et améliorations possibles</li>
-      </ul>
-      <p><strong>Points forts jury :</strong> Expérience réelle, autonomie, communication, respect client</p>
-    </div>
-  </div>
+  <section class="page-content glass">
+    <h2>Mes contextes retenus pour l’E5</h2>
+    <div class="e5-context-grid">
+      <article class="e5-card e5-context-card">
+        <header>
+          <h3>Stage en DSI — Mairie de Trappes</h3>
+          <span class="e5-type">Stage</span>
+        </header>
+        <p>Support utilisateurs et interventions sur le parc, les comptes et l’infrastructure locale.</p>
+        <p><strong>Environnement technique :</strong> Windows, Active Directory, réseau interne, parc mini-PC.</p>
+        <p><strong>Compétences mobilisées :</strong> support, droits d’accès, déploiement, suivi des incidents.</p>
+        <div class="e5-actions">
+          <a href="/#/stages" class="btn btn-primary">Voir le détail</a>
+          <a href="/#/downloads" class="e5-btn-secondary">Voir les preuves</a>
+        </div>
+      </article>
 
-  <div class="accordion" id="exam-sisr-project">
-    <button class="accordion-trigger" data-accordion="exam-sisr-project">
-      🖥️ Projet SISR (infrastructure)
-      <span class="accordion-icon">+</span>
-    </button>
-    <div class="accordion-content">
-      <p><strong>Format :</strong> Projet appliqué (seul ou équipe) sur 2ème année</p>
-      <p><strong>Thèmes possibles :</strong></p>
-      <ul>
-        <li>Mise en place infrastructure (AD, DNS/DHCP, réseaux, sécurité)</li>
-        <li>Audit/sécurisation parc existant (hardening, politiques)</li>
-        <li>Virtualisation (lab ESXi/Hyper-V)</li>
-        <li>Services : Mail, partages réseau, backup</li>
-      </ul>
-      <p><strong>Ce que je mets en avant :</strong></p>
-      <ul>
-        <li>Architecture justifiée (choix tech, schéma réseau)</li>
-        <li>Configuration détaillée et fonctionnelle</li>
-        <li>Documentation (guides admin, runbooks, escalade)</li>
-        <li>Tests (audit post-déploiement, checklist sécurité)</li>
-        <li>Réflexion critique (limitations, améliorations, costs)</li>
-      </ul>
-    </div>
-  </div>
+      <article class="e5-card e5-context-card">
+        <header>
+          <h3>Projet GSB</h3>
+          <span class="e5-type">Projet</span>
+        </header>
+        <p>Mise en place d’une infrastructure structurée avec services et documentation d’exploitation.</p>
+        <p><strong>Environnement technique :</strong> serveurs, services réseau, architecture segmentée.</p>
+        <p><strong>Compétences mobilisées :</strong> déploiement, configuration, documentation, supervision.</p>
+        <div class="e5-actions">
+          <a href="/#/projects" class="btn btn-primary">Voir le détail</a>
+          <a href="/#/downloads" class="e5-btn-secondary">Voir les preuves</a>
+        </div>
+      </article>
 
-  <div class="accordion" id="exam-written">
-    <button class="accordion-trigger" data-accordion="exam-written">
-      📝 Épreuves écrites
-      <span class="accordion-icon">+</span>
-    </button>
-    <div class="accordion-content">
-      <p><strong>Sujets :</strong> Culture générale, Anglais, Économie–Droit, Épreuve professionnelle</p>
-      <p><strong>Épreuve professionnelle :</strong> Cas d'étude infra (lire cahier charges, proposer solution, justifier)</p>
-      <p><strong>Comment me préparer :</strong></p>
-      <ul>
-        <li>Cas pratiques scolaires (exercices TP)</li>
-        <li>Lectures specs officielles (3GPP, RFC, Microsoft docs)</li>
-        <li>Prise de notes stage (incidents, solutions)</li>
-        <li>Révisions concepts fondamentaux (OSI, TCP/IP, sécurité)</li>
-      </ul>
-      <p><strong>Jury attend :</strong> Analyse réelle du problème, solution pragmatique, compréhension globale</p>
-    </div>
-  </div>
+      <article class="e5-card e5-context-card">
+        <header>
+          <h3>Projet Soccer78</h3>
+          <span class="e5-type">Projet</span>
+        </header>
+        <p>Conception d’une infrastructure réseau orientée segmentation et sécurité.</p>
+        <p><strong>Environnement technique :</strong> pfSense, switch Aruba, plan d’adressage, VLAN.</p>
+        <p><strong>Compétences mobilisées :</strong> architecture réseau, sécurité, paramétrage, tests.</p>
+        <div class="e5-actions">
+          <a href="/#/projects" class="btn btn-primary">Voir le détail</a>
+          <a href="/#/downloads" class="e5-btn-secondary">Voir les preuves</a>
+        </div>
+      </article>
 
-  <div class="accordion" id="exam-oral">
-    <button class="accordion-trigger" data-accordion="exam-oral">
-      🎤 Épreuves orales / Présentations
-      <span class="accordion-icon">+</span>
-    </button>
-    <div class="accordion-content">
-      <p><strong>Format :</strong> 15–20 min présentation + 10 min questions jury</p>
-      <p><strong>Sujets :</strong> Stage, projet SISR, étude de cas</p>
-      <p><strong>Conseils présentation :</strong></p>
-      <ul>
-        <li>Slides clairs (schéma réseau, architecture, flow diagramme)</li>
-        <li>Débuter par contexte (pourquoi cette mission/projet)</li>
-        <li>Montrer screenshots (configurations réelles, résultats tests)</li>
-        <li>Parler lentement, éviter jargon sans explication</li>
-        <li>Finir par apprentissages (ce que j'en ai tiré)</li>
-      </ul>
-      <p><strong>Jury pose questions pour vérifier :</strong> Comprehension technique, justification choices, capacité troubleshoot, soft skills</p>
-      <p><strong>Questions du jury :</strong> "Pourquoi ce design ?" "Qu'auriez-vous fait différemment ?" "Incident difficile ?" "Outils alternatives ?"</p>
+      <article class="e5-card e5-context-card">
+        <header>
+          <h3>Contexte technique complémentaire</h3>
+          <span class="e5-type">Situation</span>
+        </header>
+        <p>Laboratoire SISR avec administration systèmes et services réseau en environnement de test.</p>
+        <p><strong>Environnement technique :</strong> Windows Server, Linux, virtualisation, DNS/DHCP.</p>
+        <p><strong>Compétences mobilisées :</strong> administration, sécurisation, diagnostic, documentation.</p>
+        <div class="e5-actions">
+          <a href="/#/projects" class="btn btn-primary">Voir le détail</a>
+          <a href="/#/downloads" class="e5-btn-secondary">Voir les preuves</a>
+        </div>
+      </article>
     </div>
-  </div>
+  </section>
 
-</section>
+  <section class="page-content glass">
+    <h2>Compétences mobilisées</h2>
+    <div class="e5-skill-grid">
+      <article class="e5-card e5-skill-card">
+        <h3>Administrer les systèmes et les réseaux</h3>
+        <p>Mise en service, configuration et maintien en condition opérationnelle.</p>
+        <div class="e5-tag-row"><span>Windows Server</span><span>Linux</span><span>Réseau</span></div>
+        <small>Stage DSI, GSB, Soccer78</small>
+      </article>
+      <article class="e5-card e5-skill-card">
+        <h3>Assister les utilisateurs et traiter les incidents</h3>
+        <p>Prise en charge des demandes, diagnostic et résolution avec suivi.</p>
+        <div class="e5-tag-row"><span>Support</span><span>Incidents</span><span>Parc</span></div>
+        <small>Stage DSI</small>
+      </article>
+      <article class="e5-card e5-skill-card">
+        <h3>Déployer et configurer des équipements / services</h3>
+        <p>Déploiement de services et paramétrage des composants techniques.</p>
+        <div class="e5-tag-row"><span>Déploiement</span><span>Services</span><span>Configuration</span></div>
+        <small>GSB, Contexte complémentaire</small>
+      </article>
+      <article class="e5-card e5-skill-card">
+        <h3>Sécuriser les accès, postes et services</h3>
+        <p>Application de mesures de sécurité adaptées au contexte technique.</p>
+        <div class="e5-tag-row"><span>Sécurité</span><span>pfSense</span><span>Accès</span></div>
+        <small>Soccer78, Stage DSI</small>
+      </article>
+      <article class="e5-card e5-skill-card">
+        <h3>Documenter, suivre et expliquer une intervention</h3>
+        <p>Production de preuves, compte-rendus et explications structurées.</p>
+        <div class="e5-tag-row"><span>Documentation</span><span>Suivi</span><span>Méthode</span></div>
+        <small>Tous les contextes</small>
+      </article>
+    </div>
+  </section>
 
-<section class="page-content glass">
-  <h2>💪 Mes points forts à valoriser</h2>
-  <div class="strengths-grid">
-    <div class="strength-card">
-      <strong>🔍 Analyse de problèmes</strong>
-      <p>Demander questions, comprendre contexte avant proposer solution.</p>
+  <section class="page-content glass">
+    <h2>Correspondance entre situations et compétences</h2>
+    <div class="e5-table-wrap">
+      <table class="e5-table">
+        <thead>
+          <tr>
+            <th>Situation</th>
+            <th>Contexte technique</th>
+            <th>Actions réalisées</th>
+            <th>Compétences mobilisées</th>
+            <th>Preuves</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Stage DSI</td>
+            <td>AD, parc, réseau local</td>
+            <td>Support, gestion comptes, interventions poste</td>
+            <td>Administration, assistance, documentation</td>
+            <td>Rapport, fiches, captures</td>
+          </tr>
+          <tr>
+            <td>GSB</td>
+            <td>Infrastructure et services</td>
+            <td>Déploiement, configuration, tests</td>
+            <td>Déploiement, réseau, suivi</td>
+            <td>Schémas, procédures, synthèse</td>
+          </tr>
+          <tr>
+            <td>Soccer78</td>
+            <td>pfSense, Aruba, VLAN</td>
+            <td>Segmentation, adressage, sécurisation</td>
+            <td>Réseau, sécurité, justification</td>
+            <td>Plans, config, compte-rendu</td>
+          </tr>
+          <tr>
+            <td>Contexte complémentaire</td>
+            <td>Lab Windows/Linux</td>
+            <td>Services, scripts, supervision</td>
+            <td>Administration, tests, documentation</td>
+            <td>Annexes techniques</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
-    <div class="strength-card">
-      <strong>📚 Apprentissage autonome</strong>
-      <p>Formations, documentation, projets personnnels (pfSense, AD, Linux).</p>
-    </div>
-    <div class="strength-card">
-      <strong>🛠️ Pratique terrain</strong>
-      <p>Stage réel en Mairie = expérience concrète, utilisateurs réels, contraintes production.</p>
-    </div>
-    <div class="strength-card">
-      <strong>📖 Documentation</strong>
-      <p>Rapports clairs, guides admin fonctionnels, communication jury facile.</p>
-    </div>
-    <div class="strength-card">
-      <strong>🔐 Sécurité</strong>
-      <p>Cert SecNumAcadémie, hardening projets, respect RGPD stage.</p>
-    </div>
-    <div class="strength-card">
-      <strong>💬 Soft skills</strong>
-      <p>Communication utilisateurs, collaboration équipe, autonomie.</p>
-    </div>
-  </div>
-</section>
 
-<section class="page-content glass">
-  <h2>⚠️ Pièges à éviter</h2>
-  <ul>
-    <li><strong>Ne pas connaître ses propres projets :</strong> Si jury demande détail technique, être capable de répondre</li>
-    <li><strong>Jargon sans explication :</strong> "J'ai déployé une AD DC répliquée en multi-site" doit être clair même pour non-IT</li>
-    <li><strong>Absence de justification :</strong> "Pourquoi Windows plutôt que Linux ?" = question courante, avoir réponse prête</li>
-    <li><strong>Négliger la sécurité :</strong> Montrer conscience enjeux sécurité même si projet minimaliste</li>
-    <li><strong>Manque doc :</strong> Jury veut voir preuves (screenshots, logs, rapports)</li>
-  </ul>
-</section>
+    <article class="e5-card e5-synthesis-card">
+      <header>
+        <h3>Tableau de synthèse E5</h3>
+      </header>
+      <p class="e5-synthesis-subtitle">Document obligatoire de l’épreuve</p>
+      <div class="e5-doc-preview-wrap" aria-label="Aperçu du tableau de synthèse E5">
+        <iframe src="/assets/docs/pro.pdf" title="Aperçu du document pro.pdf" loading="lazy" class="e5-doc-preview-frame"></iframe>
+      </div>
+      <p>Ce document regroupe les situations professionnelles et les compétences associées.</p>
+      <div class="e5-actions">
+        <a href="/assets/docs/pro.pdf" target="_blank" rel="noreferrer" class="btn btn-primary">Consulter</a>
+        <a href="/assets/docs/pro.pdf" download class="e5-btn-secondary">Télécharger</a>
+      </div>
+    </article>
+  </section>
 
-<section class="page-cta glass">
-  <h3>Découvrez comment vous pouvez m'aider à réussir</h3>
-  <a href="/#/contact" class="btn btn-primary">Me contacter</a>
+  <section class="page-content glass">
+    <h2>Documents et preuves associés</h2>
+
+    <div class="accordion" id="e5-doc-fiches">
+      <button class="accordion-trigger" data-accordion="e5-doc-fiches">
+        Fiches / situations professionnelles
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-content e5-doc-list">
+        <article class="e5-doc-row"><div><strong>Fiche situation – Stage DSI</strong><small>Type : fiche</small></div><div class="e5-doc-actions"><a href="/#/downloads">Consulter</a><a href="/#/downloads">Télécharger</a></div></article>
+        <article class="e5-doc-row"><div><strong>Fiche situation – Soccer78</strong><small>Type : fiche</small></div><div class="e5-doc-actions"><a href="/#/downloads">Consulter</a><a href="/#/downloads">Télécharger</a></div></article>
+      </div>
+    </div>
+
+    <div class="accordion" id="e5-doc-rapports">
+      <button class="accordion-trigger" data-accordion="e5-doc-rapports">
+        Rapports / comptes rendus
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-content e5-doc-list">
+        <article class="e5-doc-row"><div><strong>Rapport de stage</strong><small>Type : rapport</small></div><div class="e5-doc-actions"><a href="/#/downloads">Consulter</a><a href="/#/downloads">Télécharger</a></div></article>
+        <article class="e5-doc-row"><div><strong>Compte rendu technique GSB</strong><small>Type : compte rendu</small></div><div class="e5-doc-actions"><a href="/#/downloads">Consulter</a><a href="/#/downloads">Télécharger</a></div></article>
+      </div>
+    </div>
+
+    <div class="accordion" id="e5-doc-conventions">
+      <button class="accordion-trigger" data-accordion="e5-doc-conventions">
+        Conventions / attestations
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-content e5-doc-list">
+        <article class="e5-doc-row"><div><strong>Convention de stage</strong><small>Type : administratif</small></div><div class="e5-doc-actions"><a href="/#/downloads">Consulter</a><a href="/#/downloads">Télécharger</a></div></article>
+        <article class="e5-doc-row"><div><strong>Attestation de stage</strong><small>Type : administratif</small></div><div class="e5-doc-actions"><a href="/#/downloads">Consulter</a><a href="/#/downloads">Télécharger</a></div></article>
+      </div>
+    </div>
+
+    <div class="accordion" id="e5-doc-annexes">
+      <button class="accordion-trigger" data-accordion="e5-doc-annexes">
+        Annexes techniques
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-content e5-doc-list">
+        <article class="e5-doc-row"><div><strong>Schéma réseau Soccer78</strong><small>Type : annexe</small></div><div class="e5-doc-actions"><a href="/#/downloads">Consulter</a><a href="/#/downloads">Télécharger</a></div></article>
+        <article class="e5-doc-row"><div><strong>Procédure de déploiement</strong><small>Type : annexe</small></div><div class="e5-doc-actions"><a href="/#/downloads">Consulter</a><a href="/#/downloads">Télécharger</a></div></article>
+      </div>
+    </div>
+
+    <div class="accordion" id="e5-doc-grilles">
+      <button class="accordion-trigger" data-accordion="e5-doc-grilles">
+        Documents E5 / grilles / tableau de synthèse
+        <span class="accordion-icon">+</span>
+      </button>
+      <div class="accordion-content e5-doc-list">
+        <article class="e5-doc-row"><div><strong>Grille de compétences E5</strong><small>Type : E5</small></div><div class="e5-doc-actions"><a href="/#/downloads">Consulter</a><a href="/#/downloads">Télécharger</a></div></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="page-cta glass e5-closing">
+    <h2>Ce que cette épreuve montre de mon profil</h2>
+    <p>Cette épreuve met en valeur ma progression dans des contextes concrets en support, systèmes, réseau et sécurité. Elle montre ma capacité à intervenir avec méthode, à relier la théorie à la pratique et à produire des preuves claires de mon travail.</p>
+    <div class="e5-pill-row" aria-label="Points profil">
+      <span>Méthode</span>
+      <span>Progression</span>
+      <span>Contexte réel</span>
+    </div>
+    <div class="e5-actions e5-closing-actions">
+      <a href="/#/skills" class="btn btn-primary">Voir mes compétences</a>
+      <a href="/#/projects" class="e5-btn-secondary">Voir mes projets</a>
+      <a href="/#/downloads" class="e5-btn-secondary">Voir mes téléchargements</a>
+    </div>
+  </section>
 </section>
   `;
 }

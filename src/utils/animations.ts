@@ -184,6 +184,16 @@ export function initAllAnimations(): void {
     applyStaggerAnimation('.projects-grid', 80);
     applyStaggerAnimation('.modules-grid', 100);
     applyStaggerAnimation('.downloads-grid', 90);
+    applyStaggerAnimation('.about-points', 70);
+    applyStaggerAnimation('.profile-tab-cards', 60);
+    applyStaggerAnimation('.sisr-static-grid', 80);
+    applyStaggerAnimation('.methods-grid', 70);
+    applyStaggerAnimation('.environment-focus-grid', 65);
+    applyStaggerAnimation('.projection-target-grid', 90);
+    applyStaggerAnimation('.balance-pillars', 80);
+    applyStaggerAnimation('.contact-grid', 70);
+    applyStaggerAnimation('.journey-tabs-row', 55);
+    applyStaggerAnimation('.synthesis-tabs-row', 65);
   }, 100);
 }
 

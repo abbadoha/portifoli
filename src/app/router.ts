@@ -9,8 +9,8 @@ import Stages from '../pages/stages';
 import RapportStage from '../pages/rapport-stage';
 import Certifications from '../pages/certifications';
 import CertificationAnssi from '../pages/certification-anssi';
-import Skills from '../pages/skills';
-import Projects from '../pages/projects';
+import Skills, { setupSkillsInteractions } from '../pages/skills';
+import Projects, { setupProjectsInteractions } from '../pages/projects';
 import Watch from '../pages/watch';
 import BtsSio from '../pages/bts-sio';
 import Programme from '../pages/programme';
@@ -36,8 +36,8 @@ const routes: Route[] = [
   { path: '/rapport-stage', title: 'Rapport de stage', render: RapportStage },
   { path: '/certifications', title: 'Certifications', render: Certifications },
   { path: '/certifications/anssi', title: 'Certification ANSSI', render: CertificationAnssi },
-  { path: '/skills', title: 'Compétences', render: Skills },
-  { path: '/projects', title: 'Projets', render: Projects },
+  { path: '/skills', title: 'Compétences', render: Skills, setup: setupSkillsInteractions },
+  { path: '/projects', title: 'Projets', render: Projects, setup: setupProjectsInteractions },
   { path: '/watch', title: 'Veille', render: Watch },
   { path: '/bts-sio', title: 'BTS SIO', render: BtsSio },
   { path: '/programme', title: 'Programme & Projets', render: Programme },
@@ -76,12 +76,14 @@ function renderPage() {
     
     // Update navbar active state
     updateNavbar();
+
+    // Notify UI initializers that a new page DOM is now in place.
+    document.dispatchEvent(new CustomEvent('app:page-rendered'));
   }
 }
 
 export function initRouter() {
   window.addEventListener('hashchange', renderPage);
-  window.addEventListener('DOMContentLoaded', renderPage);
   renderPage(); // render initial page
 }
 

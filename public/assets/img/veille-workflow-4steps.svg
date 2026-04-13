@@ -1,0 +1,139 @@
+<svg width="1400" height="340" viewBox="0 0 1400 340" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="">
+  <defs>
+    <linearGradient id="cardFill" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1A1D49" stop-opacity="0.93"/>
+      <stop offset="100%" stop-color="#101332" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="cardEdge" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#4FC6FF" stop-opacity="0.85"/>
+      <stop offset="50%" stop-color="#8A73FF" stop-opacity="0.85"/>
+      <stop offset="100%" stop-color="#FF6AD8" stop-opacity="0.78"/>
+    </linearGradient>
+    <linearGradient id="arrowGlow" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#50C7FF"/>
+      <stop offset="50%" stop-color="#8C76FF"/>
+      <stop offset="100%" stop-color="#FF73DA"/>
+    </linearGradient>
+    <radialGradient id="orbBlue" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#47C2FF" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#47C2FF" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="orbPink" cx="0.5" cy="0.5" r="0.5">
+      <stop offset="0%" stop-color="#FF60D7" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#FF60D7" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="ambient" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+    <filter id="cardDrop" x="-25%" y="-35%" width="170%" height="200%">
+      <feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#000" flood-opacity="0.35"/>
+    </filter>
+    <filter id="neonLine" x="-40%" y="-300%" width="200%" height="700%">
+      <feGaussianBlur stdDeviation="3" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g filter="url(#ambient)" opacity="0.92">
+    <ellipse cx="170" cy="58" rx="130" ry="46" fill="url(#orbBlue)"/>
+    <ellipse cx="700" cy="42" rx="170" ry="52" fill="url(#orbPink)"/>
+    <ellipse cx="1230" cy="270" rx="136" ry="48" fill="url(#orbBlue)"/>
+  </g>
+
+  <g filter="url(#neonLine)" opacity="0.88">
+    <path d="M305 170H385" stroke="url(#arrowGlow)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M371 157L389 170L371 183" stroke="url(#arrowGlow)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <path d="M635 170H715" stroke="url(#arrowGlow)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M701 157L719 170L701 183" stroke="url(#arrowGlow)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+
+    <path d="M965 170H1045" stroke="url(#arrowGlow)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M1031 157L1049 170L1031 183" stroke="url(#arrowGlow)" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <g transform="translate(40 54)" filter="url(#cardDrop)">
+    <rect width="260" height="230" rx="22" fill="url(#cardFill)"/>
+    <rect x="0.75" y="0.75" width="258.5" height="228.5" rx="21.25" stroke="url(#cardEdge)" stroke-opacity="0.62"/>
+
+    <circle cx="72" cy="80" r="30" fill="#1F2B61" stroke="#55C6FF" stroke-opacity="0.58"/>
+    <path d="M58 90C58 77 68 67 81 67" stroke="#59CAFF" stroke-width="5" stroke-linecap="round"/>
+    <path d="M58 80C58 72 64 66 72 66" stroke="#8B78FF" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="81" cy="90" r="4" fill="#9EE3FF"/>
+
+    <rect x="122" y="48" width="90" height="64" rx="12" fill="#23306B" stroke="#4FC3FF" stroke-opacity="0.45"/>
+    <path d="M136 72H198" stroke="#8EDBFF" stroke-width="5" stroke-linecap="round"/>
+    <path d="M136 90H186" stroke="#7178CF" stroke-width="4" stroke-linecap="round"/>
+
+    <circle cx="76" cy="150" r="18" fill="#2D255F" stroke="#A784FF" stroke-opacity="0.5"/>
+    <path d="M66 150H86" stroke="#DECFFF" stroke-width="3" stroke-linecap="round"/>
+    <path d="M76 140V160" stroke="#DECFFF" stroke-width="3" stroke-linecap="round"/>
+
+    <path d="M44 196H216" stroke="#3A3F73" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="90" cy="196" r="8" fill="#FF69DA"/>
+    <circle cx="130" cy="196" r="8" fill="#8B7CFF"/>
+    <circle cx="170" cy="196" r="8" fill="#57C8FF"/>
+  </g>
+
+  <g transform="translate(370 54)" filter="url(#cardDrop)">
+    <rect width="260" height="230" rx="22" fill="url(#cardFill)"/>
+    <rect x="0.75" y="0.75" width="258.5" height="228.5" rx="21.25" stroke="url(#cardEdge)" stroke-opacity="0.62"/>
+
+    <path d="M90 62H170L154 102V136C154 142 149 147 143 147H117C111 147 106 142 106 136V102L90 62Z" fill="#293A7F" stroke="#8D78FF" stroke-opacity="0.62"/>
+    <path d="M95 62H165" stroke="#B6A2FF" stroke-opacity="0.45"/>
+    <circle cx="130" cy="152" r="8" fill="#55C8FF"/>
+
+    <circle cx="78" cy="96" r="14" fill="#1F2C61" stroke="#54C5FF" stroke-opacity="0.5"/>
+    <circle cx="182" cy="96" r="14" fill="#2B2459" stroke="#FF69D9" stroke-opacity="0.45"/>
+    <circle cx="130" cy="44" r="12" fill="#232E66" stroke="#7D88FF" stroke-opacity="0.45"/>
+
+    <path d="M78 96L112 84" stroke="#5FCBFF" stroke-width="3" stroke-linecap="round"/>
+    <path d="M182 96L148 84" stroke="#A988FF" stroke-width="3" stroke-linecap="round"/>
+    <path d="M130 44L130 60" stroke="#7D88FF" stroke-width="3" stroke-linecap="round"/>
+
+    <path d="M48 196H212" stroke="#3A3F73" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="90" cy="196" r="8" fill="#57C8FF"/>
+    <circle cx="130" cy="196" r="8" fill="#8B7CFF"/>
+    <circle cx="170" cy="196" r="8" fill="#FF69DA"/>
+  </g>
+
+  <g transform="translate(700 54)" filter="url(#cardDrop)">
+    <rect width="260" height="230" rx="22" fill="url(#cardFill)"/>
+    <rect x="0.75" y="0.75" width="258.5" height="228.5" rx="21.25" stroke="url(#cardEdge)" stroke-opacity="0.62"/>
+
+    <circle cx="108" cy="104" r="40" fill="#253268" stroke="#55C7FF" stroke-opacity="0.58"/>
+    <circle cx="108" cy="104" r="24" stroke="#A98EFF" stroke-width="5" stroke-opacity="0.64"/>
+    <path d="M132 128L158 154" stroke="#B8EBFF" stroke-width="8" stroke-linecap="round"/>
+
+    <rect x="164" y="74" width="62" height="62" rx="12" fill="#2C2459" stroke="#FF6DD9" stroke-opacity="0.48"/>
+    <circle cx="195" cy="105" r="15" stroke="#72D2FF" stroke-width="3" stroke-opacity="0.65"/>
+    <path d="M182 105H208" stroke="#EAD5FF" stroke-width="3" stroke-linecap="round"/>
+    <path d="M195 92V118" stroke="#EAD5FF" stroke-width="3" stroke-linecap="round"/>
+
+    <circle cx="76" cy="172" r="11" fill="#1E2B61" stroke="#55C6FF" stroke-opacity="0.5"/>
+    <path d="M70 172H82" stroke="#A7DFFF" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="108" cy="172" r="11" fill="#2A245B" stroke="#8E79FF" stroke-opacity="0.5"/>
+    <path d="M102 172H114" stroke="#DCCBFF" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="140" cy="172" r="11" fill="#2A245B" stroke="#FF69D8" stroke-opacity="0.5"/>
+    <path d="M134 172H146" stroke="#FFD7F4" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <g transform="translate(1030 54)" filter="url(#cardDrop)">
+    <rect width="260" height="230" rx="22" fill="url(#cardFill)"/>
+    <rect x="0.75" y="0.75" width="258.5" height="228.5" rx="21.25" stroke="url(#cardEdge)" stroke-opacity="0.62"/>
+
+    <path d="M58 66C58 59.3726 63.3726 54 70 54H122L146 78H190C196.627 78 202 83.3726 202 90V164C202 170.627 196.627 176 190 176H70C63.3726 176 58 170.627 58 164V66Z" fill="#233067" stroke="#55C6FF" stroke-opacity="0.52"/>
+    <path d="M58 90H202" stroke="#445691"/>
+
+    <rect x="78" y="108" width="34" height="26" rx="6" fill="#31438E"/>
+    <rect x="118" y="108" width="34" height="26" rx="6" fill="#3A2F7A"/>
+    <rect x="158" y="108" width="26" height="26" rx="6" fill="#275086"/>
+
+    <path d="M78 146H184" stroke="#3D4A83" stroke-width="10" stroke-linecap="round"/>
+    <circle cx="206" cy="92" r="10" fill="#FF69DA"/>
+    <circle cx="222" cy="112" r="7" fill="#57C8FF"/>
+    <circle cx="206" cy="132" r="7" fill="#8B7CFF"/>
+  </g>
+</svg>

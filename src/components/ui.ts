@@ -27,10 +27,10 @@ export function Badge({ label }: { label: string }) {
 
 export function Tabs({ id, tabs }: { id: string; tabs: Array<{ key: string; label: string; content: string }> }) {
   const tabBtns = tabs.map((t: { key: string; label: string }, i: number) =>
-    `<button class="tab-btn" data-tabs="${id}" data-tab-key="${t.key}" aria-selected="${i===0}">${t.label}</button>`
+    `<button type="button" class="tab-btn" role="tab" id="tab-${id}-${t.key}" data-tabs="${id}" data-tab-key="${t.key}" aria-controls="panel-${id}-${t.key}" aria-selected="${i===0}" tabindex="${i===0 ? '0' : '-1'}">${t.label}</button>`
   ).join('');
   const tabPanels = tabs.map((t: { key: string; label: string; content: string }, i: number) =>
-    `<div class="tab-panel" data-tab-panel="${id}" data-tab-key="${t.key}" style="display:${i===0?'block':'none'}">${t.content}</div>`
+    `<div class="tab-panel" role="tabpanel" id="panel-${id}-${t.key}" data-tab-panel="${id}" data-tab-key="${t.key}" aria-labelledby="tab-${id}-${t.key}" ${i===0 ? '' : 'hidden'} style="display:${i===0 ? 'block' : 'none'}">${t.content}</div>`
   ).join('');
   return `<div class="tabs" id="tabs-${id}">
     <div class="tab-list" role="tablist">${tabBtns}</div>

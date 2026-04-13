@@ -1,431 +1,382 @@
 // src/pages/profile.ts
-// Page profil interactive avec accordéon, tabs, toggle téléphone
+// Refactor complet de la page Profil pour BTS SIO SISR
 
-import { Chip, copyToClipboard, showToast } from '../components/ui';
+import { Button, Chip, Tabs } from '../components/ui';
+import { Icons } from '../components/icons';
 
 export default function Profile() {
-  // Setup interactivité après rendu
-  const setupProfileInteractions = () => {
-    setTimeout(() => {
-      // Copy email button
-      const copyEmailBtn = document.querySelector('[data-copy-email]');
-      if (copyEmailBtn) {
-        copyEmailBtn.addEventListener('click', () => {
-          copyToClipboard('chamsabbassi78@gmail.com');
-          showToast('Email copié ✓');
-        });
-      }
+  const sectionHeader = (eyebrow: string, title: string, intro = '') => `
+    <div class="section-header-profile">
+      <span class="section-eyebrow">${eyebrow}</span>
+      <h2 class="section-title-profile">${title}</h2>
+      ${intro ? `<p class="profile-section-intro">${intro}</p>` : ''}
+    </div>
+  `;
 
-      // Toggle téléphone révélation
-      const revealPhoneBtn = document.querySelector('[data-reveal-phone]');
-      const phoneDisplay = document.querySelector('[data-phone-display]');
-      if (revealPhoneBtn && phoneDisplay) {
-        let isRevealed = false;
-        revealPhoneBtn.addEventListener('click', () => {
-          isRevealed = !isRevealed;
-          if (isRevealed) {
-            phoneDisplay.textContent = '+33 06 09 69 57 34';
-            revealPhoneBtn.textContent = '🔒 Masquer';
-          } else {
-            phoneDisplay.textContent = '+33 •• •• •• ••';
-            revealPhoneBtn.textContent = '👁️ Révéler numéro';
-          }
-        });
-      }
+  const heroTag = (label: string) => Chip({ label });
 
-      // Tabs compétences
-      document.querySelectorAll('[data-profile-tab]').forEach(tab => {
-        tab.addEventListener('click', (e) => {
-          const target = (e.currentTarget as HTMLElement).getAttribute('data-profile-tab');
-          
-          // Update active tab
-          document.querySelectorAll('[data-profile-tab]').forEach(t => t.classList.remove('active'));
-          (e.currentTarget as HTMLElement).classList.add('active');
-          
-          // Show corresponding panel
-          document.querySelectorAll('[data-profile-panel]').forEach(panel => {
-            const panelId = panel.getAttribute('data-profile-panel');
-            if (panelId === target) {
-              (panel as HTMLElement).style.display = 'block';
-            } else {
-              (panel as HTMLElement).style.display = 'none';
-            }
-          });
-        });
-      });
+  const infoCard = (label: string, value: string) => `
+    <div class="hero-info-card glass" data-spotlight data-tilt-card>
+      <span class="hero-info-label">${label}</span>
+      <span class="hero-info-value">${value}</span>
+    </div>
+  `;
 
-      // Accordéon "À propos"
-      const accordionTrigger = document.querySelector('[data-profile-accordion]');
-      if (accordionTrigger) {
-        accordionTrigger.addEventListener('click', () => {
-          const isExpanded = accordionTrigger.getAttribute('aria-expanded') === 'true';
-          accordionTrigger.setAttribute('aria-expanded', String(!isExpanded));
-        });
-      }
-    }, 100);
-  };
+  const contactCard = (icon: string, title: string, value: string, action: string, href: string) => `
+    <a href="${href}" class="contact-card glass reveal" target="_blank" rel="noreferrer noopener" data-spotlight data-tilt-card>
+      <div class="contact-card-icon">${icon}</div>
+      <div class="contact-card-body">
+        <strong>${title}</strong>
+        <span class="contact-card-value">${value}</span>
+        <span class="contact-card-action">${action}</span>
+      </div>
+      <span class="contact-card-arrow" aria-hidden="true">${Icons.ChevronRight({ size: 18 })}</span>
+    </a>
+  `;
 
-  setupProfileInteractions();
+  const methodCard = (step: string, icon: string, title: string, description: string) => `
+    <article class="method-card glass reveal" data-spotlight>
+      <div class="method-card-top">
+        <span class="method-step">${step}</span>
+        <span class="method-icon method-icon-shell">${icon}</span>
+      </div>
+      <h3>${title}</h3>
+      <p>${description}</p>
+      <span class="method-line" aria-hidden="true"></span>
+    </article>
+  `;
+
+  const profileTabMini = (title: string, description: string) => `
+    <div class="profile-tab-mini">
+      <strong>${title}</strong>
+      <span>${description}</span>
+    </div>
+  `;
+
+  const profileTechTabs = Tabs({
+    id: 'profile-tech',
+    tabs: [
+      {
+        key: 'vision',
+        label: 'Vision',
+        content: `
+          <div class="profile-tab-panel">
+            <div class="profile-tab-copy">
+              <h3>Des environnements utiles et organisés</h3>
+              <p>Je suis attirée par les contextes techniques clairs, structurés et utiles au quotidien.</p>
+            </div>
+            <div class="profile-tab-cards">
+              ${profileTabMini('Clarté', 'Comprendre l’ensemble avant d’agir.')}
+              ${profileTabMini('Repère', 'Chercher l’utilité avant la complexité.')}
+            </div>
+          </div>
+        `,
+      },
+      {
+        key: 'methode',
+        label: 'Méthode',
+        content: `
+          <div class="profile-tab-panel">
+            <div class="profile-tab-copy">
+              <h3>Une méthode simple et rigoureuse</h3>
+              <p>Je préfère poser un cadre clair, documenter puis intervenir avec méthode.</p>
+            </div>
+            <div class="profile-tab-cards">
+              ${profileTabMini('Organisation', 'Structurer avant de corriger.')}
+              ${profileTabMini('Suivi', 'Laisser une trace utile et lisible.')}
+            </div>
+          </div>
+        `,
+      },
+      {
+        key: 'priorite',
+        label: 'Priorité',
+        content: `
+          <div class="profile-tab-panel">
+            <div class="profile-tab-copy">
+              <h3>Fiabilité et cohérence</h3>
+              <p>J’accorde de l’importance à la stabilité, à la cohérence des accès et à une documentation propre.</p>
+            </div>
+            <div class="profile-tab-cards">
+              ${profileTabMini('Fiabilité', 'Maintenir un cadre stable.')}
+              ${profileTabMini('Cohérence', 'Garder une logique technique claire.')}
+            </div>
+          </div>
+        `,
+      },
+      {
+        key: 'objectif',
+        label: 'Objectif',
+        content: `
+          <div class="profile-tab-panel">
+            <div class="profile-tab-copy">
+              <h3>Progresser sur le terrain</h3>
+              <p>Je souhaite évoluer dans des contextes systèmes, réseau et sécurité pour gagner en autonomie.</p>
+            </div>
+            <div class="profile-tab-cards">
+              ${profileTabMini('Alternance', 'Apprendre au contact du terrain.')}
+              ${profileTabMini('Cap', 'Construire un profil SISR solide.')}
+            </div>
+          </div>
+        `,
+      },
+    ],
+  });
+
+  const environmentCard = (image: string, alt: string, title: string, description: string, hint: string) => `
+    <article class="environment-focus-card glass reveal" data-spotlight data-tilt-card>
+      <div class="environment-focus-media">
+        <img src="${image}" alt="${alt}" />
+      </div>
+      <div class="environment-focus-copy">
+        <div class="environment-focus-head">
+          <h3>${title}</h3>
+          <span class="environment-focus-badge">${hint}</span>
+        </div>
+        <p>${description}</p>
+      </div>
+    </article>
+  `;
+
+  const targetCard = (step: string, image: string, alt: string, title: string, description: string, tone = '') => `
+    <article class="target-card glass reveal ${tone}" data-spotlight data-tilt-card>
+      <div class="target-media">
+        <img src="${image}" alt="${alt}" />
+      </div>
+      <span class="target-step">${step}</span>
+      <h3>${title}</h3>
+      <p>${description}</p>
+      <div class="target-progress" aria-hidden="true"><span></span></div>
+    </article>
+  `;
+
+  const balancePillar = (image: string, alt: string, title: string, description: string, tag: string) => `
+    <article class="balance-pillar glass reveal" data-spotlight>
+      <div class="balance-pillar-media">
+        <img src="${image}" alt="${alt}" />
+      </div>
+      <span class="balance-pillar-tag">${tag}</span>
+      <h3>${title}</h3>
+      <p>${description}</p>
+    </article>
+  `;
 
   return `
-<!-- A) Hero profil compact + badges -->
-<section class="page-hero profile-hero">
-  <div class="profile-hero-content">
-    <h1>Doha ABBASSI</h1>
-    <p class="profile-subtitle">Administratrice Systèmes & Réseaux en devenir</p>
-    <div class="profile-badges">
-      ${Chip({ label: 'BTS SIO SISR' })}
-      ${Chip({ label: 'Trappes (78)' })}
-      ${Chip({ label: 'Stage IT 2025' })}
-    </div>
-  </div>
-</section>
+<section class="profile-page profile-page-redesign">
+  <!-- SECTION 1 — HERO / INTRODUCTION -->
+  <section class="profile-section reveal hero-section">
+    <div class="profile-section-content">
+      <div class="hero-grid hero-grid-premium">
+        <span class="hero-grid-glow hero-grid-glow-one" aria-hidden="true"></span>
+        <span class="hero-grid-glow hero-grid-glow-two" aria-hidden="true"></span>
+        <div class="hero-copy hero-copy-panel glass reveal" data-spotlight data-tilt-card>
+          <span class="section-eyebrow">Profil SISR</span>
+          <div class="hero-title-wrap">
+            <span class="hero-title-aura" aria-hidden="true"></span>
+            <h1 class="hero-title">ABBASSI Doha</h1>
+          </div>
+          <p class="hero-subtitle"><span class="hero-status-dot" aria-hidden="true"></span>Étudiante BTS SIO — option SISR</p>
+          <p class="hero-text">Étudiante en BTS SIO option SISR, je m’intéresse particulièrement à l’administration systèmes, aux réseaux et à la sécurité. Je recherche une alternance pour progresser dans des environnements organisés, rigoureux et bien documentés.</p>
+          <div class="hero-tag-list hero-chip-list">
+            ${heroTag('Administration systèmes')}
+            ${heroTag('Réseaux')}
+            ${heroTag('Cybersécurité')}
+            ${heroTag('Virtualisation')}
+          </div>
+          <div class="hero-actions">
+            ${Button({ label: 'Voir mon parcours', href: '/#/parcours', variant: 'primary' })}
+            ${Button({ label: 'Me contacter', href: '/#/contact', variant: 'outline' })}
+          </div>
+        </div>
 
-<!-- B) Carte identité avec avatar placeholder + actions -->
-<section class="page-content glass profile-identity-card">
-  <div class="identity-card-grid">
-    <div class="identity-avatar">
-      <div class="avatar-placeholder">
-        <span class="avatar-initials">DA</span>
+        <aside class="hero-panel glass hero-panel-premium reveal" data-spotlight data-tilt-card>
+          <div class="hero-avatar-shell" data-tilt-card>
+            <img src="/assets/img/avatar.jpg" alt="ABBASSI Doha" class="hero-avatar" />
+          </div>
+          <p class="hero-panel-note">Disponible pour rejoindre une entreprise en alternance et progresser sur des environnements systèmes, réseau et sécurité.</p>
+          <div class="hero-info-grid">
+            ${infoCard('Âge', '19 ans')}
+            ${infoCard('Localisation', 'Trappes, Île-de-France')}
+            ${infoCard('Statut', 'Recherche alternance')}
+            ${infoCard('Objectif', 'Administration SISR')}
+          </div>
+        </aside>
       </div>
-      <p class="avatar-note"><!-- 📷 PLACEHOLDER: Remplacer par photo professionnelle --></p>
     </div>
-    
-    <div class="identity-info">
-      <h2>Informations de contact</h2>
-      
-      <div class="contact-item">
-        <strong>📧 Email</strong>
-        <p>chamsabbassi78@gmail.com</p>
-        <button class="btn btn-ghost btn-sm" data-copy-email>📋 Copier</button>
-      </div>
-      
-      <div class="contact-item">
-        <strong>📱 Téléphone</strong>
-        <p data-phone-display>+33 •• •• •• ••</p>
-        <button class="btn btn-ghost btn-sm" data-reveal-phone>👁️ Révéler numéro</button>
-      </div>
-      
-      <div class="contact-item">
-        <strong>📍 Localisation</strong>
-        <p>Trappes (78190), Île-de-France</p>
-        <p class="text-secondary">Mobilité régionale • Télétravail possible</p>
-      </div>
-      
-      <div class="profile-actions">
-        <a href="/assets/docs/CV.pdf" class="btn btn-primary" download>
-          📄 Télécharger le CV
-        </a>
-        <button class="btn btn-outline" disabled title="LinkedIn à ajouter">
-          🔗 LinkedIn <small>(à remplacer)</small>
-        </button>
-        <button class="btn btn-outline" disabled title="GitHub à ajouter">
-          💻 GitHub <small>(à remplacer)</small>
-        </button>
-      </div>
-      <p class="placeholder-note"><!-- ⚠️ PLACEHOLDER: Remplacer liens LinkedIn/GitHub dans profile-actions --></p>
-    </div>
-  </div>
-</section>
+  </section>
 
-<!-- C) À propos avec accordéon version courte/longue -->
-<section class="page-content glass profile-about">
-  <h2>À propos de moi</h2>
-  
-  <div class="about-summary">
-    <p>
-      Étudiante en <strong>BTS SIO option SISR</strong> (Solutions d'Infrastructure, Systèmes et Réseaux), 
-      je me spécialise dans l'administration de systèmes Windows/Linux, la gestion de réseaux TCP/IP, 
-      et la sécurisation d'infrastructures IT.
-    </p>
-    <p>
-      Passionnée par la <strong>cybersécurité</strong> et la <strong>documentation technique</strong>, 
-      j'ai obtenu la certification <strong>SecNumAcadémie (ANSSI)</strong> et effectué un stage en environnement 
-      municipal réel, où j'ai pu appliquer mes compétences en support utilisateur, administration serveur, 
-      et gestion d'incidents.
-    </p>
-  </div>
-  
-  <div class="accordion" id="about-accordion">
-    <button class="accordion-trigger" data-profile-accordion aria-expanded="false">
-      <span>📖 En savoir plus sur mon parcours</span>
-      <span class="accordion-icon">+</span>
-    </button>
-    <div class="accordion-content">
-      <div class="about-extended">
-        <h3>Mon approche professionnelle</h3>
-        <p>
-          Ce qui me définit : <strong>rigueur, curiosité technique, et souci du détail</strong>. 
-          En tant qu'administratrice systèmes en formation, je crois fermement que la documentation claire, 
-          l'automatisation intelligente, et la sécurité dès la conception sont essentielles pour 
-          une infrastructure IT robuste.
-        </p>
-        
-        <h3>Ce que je recherche</h3>
-        <p>
-          Je suis activement à la recherche d'opportunités pour approfondir mes compétences en :
-        </p>
-        <ul>
-          <li><strong>Administration réseaux</strong> : Routage, VLAN, VPN, firewall avancés</li>
-          <li><strong>Virtualisation & Cloud</strong> : VMware, Hyper-V, infrastructure hybride</li>
-          <li><strong>Sécurité IT</strong> : Hardening, audit, conformité RGPD, gestion incidents</li>
-          <li><strong>Automatisation</strong> : PowerShell, Bash scripting, déploiement à échelle</li>
-        </ul>
-        
-        <h3>Expérience concrète</h3>
-        <p>
-          Mon stage à la <strong>Mairie de Trappes</strong> (3 mois, mai–juillet 2025) m'a permis 
-          de travailler sur une infrastructure réelle avec ~160 postes de travail, plusieurs serveurs 
-          Windows Server, et un domaine Active Directory multi-sites. J'ai géré des tickets support L1/L2, 
-          effectué des maintenances serveur, et participé à des audits de sécurité.
-        </p>
-        
-        <p>
-          En parallèle, j'ai réalisé des projets personnels (pfSense, Active Directory LAB, Linux hardening) 
-          qui m'ont permis de renforcer mon autonomie et ma capacité à résoudre des problèmes complexes 
-          en consultant documentation officielle et communautés techniques.
-        </p>
-        
-        <h3>Valeurs professionnelles</h3>
-        <ul>
-          <li>🎯 <strong>Précision</strong> : Chaque configuration compte</li>
-          <li>📚 <strong>Documentation</strong> : Partager les savoirs pour faciliter la maintenance</li>
-          <li>🔐 <strong>Sécurité</strong> : Intégrer la sécurité dès la conception, pas en post-fix</li>
-          <li>🤝 <strong>Communication</strong> : Expliquer clairement concepts techniques aux non-IT</li>
-          <li>🚀 <strong>Apprentissage continu</strong> : Veille technologique active (5G, cloud, DevOps)</li>
-        </ul>
+  <!-- SECTION 2 — PROFIL TECHNIQUE -->
+  <section class="profile-section reveal about-section">
+    <div class="profile-section-content two-column about-split">
+      <div class="profile-text-panel about-copy profile-tech-column">
+        ${sectionHeader('Profil technique', 'Un profil technique clair et structuré', 'Attirée par des environnements organisés, fiables et concrets.')}
+        <div class="profile-tabs-shell glass reveal" data-spotlight>
+          <div class="profile-tech-tabs">
+            ${profileTechTabs}
+          </div>
+        </div>
+      </div>
+      <div class="profile-visual-secondary about-visual-side">
+        <div class="profile-visual-card visual-card-premium about-visual-card" data-tilt-card>
+          <div class="about-visual-media">
+            <span class="about-visual-orbit orbit-one" aria-hidden="true"></span>
+            <span class="about-visual-orbit orbit-two" aria-hidden="true"></span>
+            <img src="/assets/img/shield.png" alt="Illustration de sécurité et protection" />
+          </div>
+          <div class="visual-card-caption about-visual-summary">
+            <strong>Clarté • méthode • fiabilité</strong>
+            <span>Des environnements organisés, bien suivis et pensés pour progresser proprement.</span>
+          </div>
+          <div class="about-signal-grid" aria-label="Repères du profil">
+            <div class="about-signal glass">
+              <span class="about-signal-label">Vision</span>
+              <strong>Clarté</strong>
+            </div>
+            <div class="about-signal glass">
+              <span class="about-signal-label">Priorité</span>
+              <strong>Fiabilité</strong>
+            </div>
+            <div class="about-signal glass">
+              <span class="about-signal-label">Cap</span>
+              <strong>Progression</strong>
+            </div>
+          </div>
+          <div class="about-tech-icons" aria-label="Aperçu des domaines techniques">
+            <span class="about-tech-icon" title="Linux"><img src="/assets/img/linux.png" alt="Linux" /><em>Linux</em></span>
+            <span class="about-tech-icon" title="Réseau"><img src="/assets/img/network.png" alt="Réseau" /><em>Réseau</em></span>
+            <span class="about-tech-icon" title="Cloud"><img src="/assets/img/cloud.png" alt="Cloud" /><em>Cloud</em></span>
+            <span class="about-tech-icon" title="Cybersécurité"><img src="/assets/img/cybersecurity.png" alt="Cybersécurité" /><em>Sécurité</em></span>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- D) Compétences & outils avec tabs -->
-<section class="page-content glass profile-skills">
-  <h2>Compétences & Outils</h2>
-  
-  <div class="profile-tabs">
-    <div class="profile-tabs-list">
-      <button class="profile-tab active" data-profile-tab="reseaux">🌐 Réseaux</button>
-      <button class="profile-tab" data-profile-tab="systemes">🖥️ Systèmes</button>
-      <button class="profile-tab" data-profile-tab="securite">🔐 Sécurité</button>
-      <button class="profile-tab" data-profile-tab="itsm">📋 ITSM</button>
-    </div>
-    
-    <div class="profile-tabs-panels">
-      <!-- Panel Réseaux -->
-      <div class="profile-panel" data-profile-panel="reseaux" style="display: block;">
-        <h3>Réseaux & Infrastructure</h3>
-        <div class="skills-list">
-          <div class="skill-item">
-            <strong>TCP/IP</strong>
-            <p>Modèle OSI, adressage IP, subnetting, routage statique/dynamique</p>
-            <span class="level-badge">Bonnes bases</span>
-          </div>
-          <div class="skill-item">
-            <strong>Services réseau</strong>
-            <p>DNS, DHCP, NAT, VPN (OpenVPN, IPsec), VLAN 802.1Q</p>
-            <span class="level-badge">En approfondissement</span>
-          </div>
-          <div class="skill-item">
-            <strong>Firewalls</strong>
-            <p>pfSense, iptables, ACL, filtrage par état, IDS/IPS notions</p>
-            <span class="level-badge">Bonnes bases</span>
-          </div>
-          <div class="skill-item">
-            <strong>Outils</strong>
-            <p>Wireshark, nmap, tcpdump, ping/traceroute, diagnostic réseau</p>
-            <span class="level-badge">Notions</span>
-          </div>
-        </div>
+  <!-- SECTION 3 — POURQUOI LA SPÉCIALITÉ SISR ME CORRESPOND -->
+  <section class="profile-section reveal sisr-section">
+    <div class="profile-section-content">
+      <div class="sisr-heading-shell glass reveal" data-spotlight>
+        ${sectionHeader('Spécialité', 'Pourquoi la spécialité SISR me correspond', 'Un choix cohérent pour approfondir les domaines techniques qui me correspondent le mieux au quotidien.')}
       </div>
-      
-      <!-- Panel Systèmes -->
-      <div class="profile-panel" data-profile-panel="systemes" style="display: none;">
-        <h3>Systèmes d'exploitation</h3>
-        <div class="skills-list">
-          <div class="skill-item">
-            <strong>Windows Server</strong>
-            <p>Active Directory, Group Policy, DNS/DHCP serveur, partages réseau</p>
-            <span class="level-badge">Bonnes bases</span>
+      <div class="sisr-static-grid interactive">
+        <article class="sisr-static-card glass reveal" data-spotlight data-tilt-card>
+          <span class="sisr-card-kicker">SISR • systèmes</span>
+          <div class="sisr-feature-image">
+            <img src="/assets/img/sys.png" alt="Systèmes Windows et Linux" />
           </div>
-          <div class="skill-item">
-            <strong>Linux</strong>
-            <p>Debian/Ubuntu, shell Bash, permissions, services systemd, SSH</p>
-            <span class="level-badge">Bonnes bases</span>
-          </div>
-          <div class="skill-item">
-            <strong>Virtualisation</strong>
-            <p>VMware ESXi, Hyper-V, VirtualBox, snapshots, clonage</p>
-            <span class="level-badge">En approfondissement</span>
-          </div>
-          <div class="skill-item">
-            <strong>Scripting</strong>
-            <p>PowerShell (automatisation Windows), Bash (automatisation Linux)</p>
-            <span class="level-badge">Notions</span>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Panel Sécurité -->
-      <div class="profile-panel" data-profile-panel="securite" style="display: none;">
-        <h3>Sécurité IT</h3>
-        <div class="skills-list">
-          <div class="skill-item">
-            <strong>Hardening</strong>
-            <p>Sécurisation OS (Windows/Linux), désactivation services inutiles, firewall</p>
-            <span class="level-badge">Bonnes bases</span>
-          </div>
-          <div class="skill-item">
-            <strong>Authentification</strong>
-            <p>Active Directory, Kerberos, LDAP, politiques mot de passe robustes</p>
-            <span class="level-badge">Bonnes bases</span>
-          </div>
-          <div class="skill-item">
-            <strong>Conformité</strong>
-            <p>RGPD (sensibilisation), SecNumAcadémie ANSSI, bonnes pratiques cybersécurité</p>
-            <span class="level-badge">Certifié</span>
-          </div>
-          <div class="skill-item">
-            <strong>Outils</strong>
-            <p>Fail2ban, UFW, certificats SSL/TLS, audit logs, monitoring sécurité</p>
-            <span class="level-badge">Notions</span>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Panel ITSM -->
-      <div class="profile-panel" data-profile-panel="itsm" style="display: none;">
-        <h3>ITSM & Support</h3>
-        <div class="skills-list">
-          <div class="skill-item">
-            <strong>Support utilisateur</strong>
-            <p>Résolution incidents L1/L2, ticketing, formation utilisateurs</p>
-            <span class="level-badge">Bonnes bases</span>
-          </div>
-          <div class="skill-item">
-            <strong>Documentation</strong>
-            <p>Rédaction procédures, guides admin, runbooks, documentation technique</p>
-            <span class="level-badge">Bonnes bases</span>
-          </div>
-          <div class="skill-item">
-            <strong>Monitoring</strong>
-            <p>Zabbix, Nagios notions, alertes, dashboards métriques</p>
-            <span class="level-badge">Notions</span>
-          </div>
-          <div class="skill-item">
-            <strong>Outils</strong>
-            <p>RDP, SSH/Putty, Git/GitHub, VSCode, ticketing systems</p>
-            <span class="level-badge">Bonnes bases</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+          <h3>Systèmes</h3>
+          <p>L’administration des systèmes m’intéresse pour la logique des services, la gestion des comptes et le maintien d’un environnement stable.</p>
+          <span class="sisr-card-footer">Stabilité & administration</span>
+        </article>
 
-<!-- E) Parcours timeline verticale -->
-<section class="page-content glass profile-timeline">
-  <h2>Parcours professionnel & académique</h2>
-  
-  <div class="timeline-vertical">
-    <div class="timeline-item">
-      <div class="timeline-marker">📚</div>
-      <div class="timeline-content">
-        <span class="timeline-date">2024–2026</span>
-        <h3>BTS SIO option SISR</h3>
-        <p><strong>Lycée Jean Vilar, Plaisir</strong></p>
-        <p>Formation systèmes, réseaux, sécurité. Administration infrastructure, support IT, projets professionnels.</p>
-      </div>
-    </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-marker">🏢</div>
-      <div class="timeline-content">
-        <span class="timeline-date">Mai–Juillet 2025</span>
-        <h3>Stage SI — Mairie de Trappes</h3>
-        <p><strong>Département informatique</strong></p>
-        <p>Administration serveurs Windows, support L1/L2 (~160 postes), Active Directory, gestion tickets, projets infrastructure.</p>
-        <a href="/#/stages" class="link-arrow">Voir détails stage →</a>
-      </div>
-    </div>
-    
-    <div class="timeline-item">
-      <div class="timeline-marker">🔐</div>
-      <div class="timeline-content">
-        <span class="timeline-date">2025</span>
-        <h3>Certification SecNumAcadémie (ANSSI)</h3>
-        <p><strong>Agence Nationale Cybersécurité</strong></p>
-        <p>Formation en ligne cybersécurité, bonnes pratiques, sensibilisation menaces, conformité.</p>
-      </div>
-    </div>
-    
-    <div class="timeline-item timeline-discreet">
-      <div class="timeline-marker">🏛️</div>
-      <div class="timeline-content">
-        <span class="timeline-date">23 déc 2025–4 jan 2026</span>
-        <h3>Mission ponctuelle — Château de Versailles</h3>
-        <p><strong>Agent de sûreté (temporaire)</strong></p>
-        <p>Mission courte hors IT, compétences soft skills (communication, rigueur, travail d'équipe).</p>
-      </div>
-    </div>
-  </div>
-</section>
+        <article class="sisr-static-card glass reveal" data-spotlight data-tilt-card>
+          <span class="sisr-card-kicker">SISR • réseau</span>
+          <div class="sisr-feature-image">
+            <img src="/assets/img/rez.png" alt="Architecture réseau" />
+          </div>
+          <h3>Réseaux</h3>
+          <p>Le réseau me plaît pour sa dimension concrète : architecture, segmentation et compréhension de la circulation des flux.</p>
+          <span class="sisr-card-footer">Architecture & flux</span>
+        </article>
 
-<!-- F) Langues & centres d'intérêt -->
-<section class="page-content glass profile-interests">
-  <h2>Langues & Centres d'intérêt</h2>
-  
-  <div class="interests-grid">
-    <div class="interest-card">
-      <div class="interest-icon">🌍</div>
-      <h3>Langues</h3>
-      <div class="languages-list">
-        <div class="language-item">
-          <strong>Français</strong>
-          <span class="lang-level">Langue maternelle</span>
+        <article class="sisr-static-card glass reveal" data-spotlight data-tilt-card>
+          <span class="sisr-card-kicker">SISR • sécurité</span>
+          <div class="sisr-feature-image">
+            <img src="/assets/img/cyber.png" alt="Sécurité et cybersécurité" />
+          </div>
+          <h3>Cybersécurité</h3>
+          <p>La sécurité est pour moi une exigence transversale : contrôler les accès, protéger l’existant et renforcer les bonnes pratiques.</p>
+          <span class="sisr-card-footer">Protection & contrôle</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 4 — MA MANIÈRE DE TRAVAILLER -->
+  <section class="profile-section reveal methodology-section">
+    <div class="profile-section-content methodology-content-full">
+      ${sectionHeader('Méthode', 'Ma manière de travailler', 'Une façon de travailler simple, progressive et rigoureuse.')}
+      <div class="methods-grid methods-grid-clean interactive">
+        ${methodCard('<img src="/assets/img/Structure.jpg" alt="Structure" />', Icons.Check({ size: 22 }), 'Structure', 'Je préfère poser un cadre clair avant d’agir : comprendre, organiser, puis intervenir.')}
+        ${methodCard('<img src="/assets/img/adaptation.jpg" alt="Adaptation" />', Icons.Check({ size: 22 }), 'Adaptation', 'Je peux prendre en main un nouvel environnement en observant rapidement son fonctionnement.')}
+        ${methodCard('<img src="/assets/img/perseverance.jpg" alt="Persévérance" />', Icons.Check({ size: 22 }), 'Persévérance', 'Quand un problème résiste, je préfère analyser et tester plutôt que contourner trop vite.')}
+        ${methodCard('<img src="/assets/img/curiosite-technique.jpg" alt="Curiosité technique" />', Icons.Check({ size: 22 }), 'Curiosité technique', 'J’aime comprendre le pourquoi d’un fonctionnement, pas seulement appliquer une suite d’étapes.')}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 5 — LES ENVIRONNEMENTS QUI M'ATTIRENT LE PLUS -->
+  <section class="profile-section reveal environments-section">
+    <div class="profile-section-content">
+      ${sectionHeader('Environnements', 'Les environnements qui m’attirent le plus', 'Des domaines concrets dans lesquels je souhaite gagner en autonomie et en efficacité.')}
+      <div class="environment-focus-grid interactive">
+        ${environmentCard('/assets/img/windows-linux.png', 'Windows et Linux', 'Windows / Linux', 'Administration de base, services, comptes, droits et logique de durcissement.', 'Base système')}
+        ${environmentCard('/assets/img/network-diagram.png', 'Services réseau', 'Services réseau', 'DNS, DHCP, segmentation et compréhension de la circulation des flux.', 'Services utiles')}
+        ${environmentCard('/assets/img/firewall.png', 'Sécurisation des accès', 'Sécurisation', 'Pare-feu, filtrage, contrôle des accès et bonnes pratiques de protection.', 'Accès protégés')}
+        ${environmentCard('/assets/img/virtualization.png', 'Virtualisation et machines virtuelles', 'Virtualisation', 'Environnements de test, déploiements et prise en main d’infrastructures virtualisées.', 'Tests & VM')}
+        ${environmentCard('/assets/img/documentation.png', 'Documentation technique', 'Documentation', 'Procédures, comptes rendus, schémas et supports utiles pour le suivi.', 'Traçabilité')}
+        ${environmentCard('/assets/img/troubleshooting.png', 'Résolution de problèmes', 'Résolution de problèmes', 'Analyser une cause, tester, isoler l’erreur et rétablir un fonctionnement stable.', 'Diagnostic')}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 6 — PROJECTION / CE QUE JE VISE -->
+  <section class="profile-section reveal projection-section">
+    <div class="profile-section-content">
+      ${sectionHeader('Projection', 'Ce que je vise', 'Une trajectoire lisible entre consolidation des bases et montée en responsabilité.')}
+      <div class="projection-target-grid projection-target-grid-compact interactive">
+        ${targetCard('Court terme', '/assets/img/stage.png', 'Alternance et immersion professionnelle', 'Trouver une alternance pour consolider mes bases', 'Consolider mes bases en systèmes et réseaux au contact d’un environnement professionnel.', 'target-card-primary')}
+        ${targetCard('Moyen terme', '/assets/img/goal.png', 'Montée en compétence sur des infrastructures', 'Évoluer vers un profil plus complet', 'Développer un profil capable de gérer un environnement plus complet avec une dimension sécurité croissante.', 'target-card-secondary')}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 7 — ÉQUILIBRE PERSONNEL -->
+  <section class="profile-section reveal balance-section">
+    <div class="profile-section-content">
+      ${sectionHeader('Équilibre', 'Ce qui m’équilibre aussi', 'Des activités qui soutiennent la régularité, l’analyse et l’ouverture sans casser la ligne professionnelle.')}
+      <div class="balance-pillars">
+        ${balancePillar('/assets/img/sport.png', 'Discipline et énergie', 'Discipline & énergie', 'Le sport m’aide à garder régularité, concentration et sens de l’effort dans la durée.', 'Régularité')}
+        ${balancePillar('/assets/img/reading.png', 'Réflexion et curiosité', 'Réflexion & curiosité', 'La lecture nourrit ma capacité à prendre du recul, à mieux analyser et à rester curieuse.', 'Analyse')}
+        ${balancePillar('/assets/img/travel.png', 'Ouverture et découverte', 'Ouverture & découverte', 'Découvrir d’autres contextes me pousse à rester ouverte, adaptable et attentive.', 'Ouverture')}
+      </div>
+    </div>
+  </section>
+
+  <!-- SECTION 8 — CONTACT + CTA FINAL -->
+  <section class="profile-section reveal contact-section">
+    <div class="profile-section-content contact-layout contact-layout-merged">
+      <div class="profile-text-panel contact-copy glass reveal" data-spotlight data-tilt-card>
+        ${sectionHeader('Contact', 'Me contacter')}
+        <p class="contact-intro">Disponible pour échanger autour d’une alternance ou d’un projet. Si mon profil correspond à votre besoin, je serai ravie d’en discuter rapidement.</p>
+        <div class="contact-quick-actions">
+          <button type="button" class="btn btn-primary contact-copy-button" data-copy-email="chamsabbassi78@gmail.com" data-default-label="Copier mon email">
+            <span class="btn-label">Copier mon email</span>
+          </button>
+          <a class="btn btn-outline" href="https://www.linkedin.com/in/doha-abbassi" target="_blank" rel="noreferrer noopener" aria-label="Ouvrir LinkedIn">
+            <span class="btn-label">Ouvrir LinkedIn</span>
+          </a>
         </div>
-        <div class="language-item">
-          <strong>Anglais</strong>
-          <span class="lang-level">Niveau B1 • Compréhension docs techniques</span>
+      </div>
+      <div class="contact-grid interactive">
+        ${contactCard('<img src="/assets/img/gmail.png" alt="Email" />', 'Email', 'chamsabbassi78@gmail.com', 'Envoyer un email', 'mailto:chamsabbassi78@gmail.com')}
+        ${contactCard('<img src="/assets/img/tel.png" alt="Téléphone" />', 'Téléphone', '+33 6 09 69 57 34', 'Appeler', 'tel:+33609695734')}
+        ${contactCard('<img src="/assets/img/linkedin.png" alt="LinkedIn" />', 'LinkedIn', 'linkedin.com/in/doha-abbassi', 'Voir le profil', 'https://www.linkedin.com/in/doha-abbassi')}
+        ${contactCard('<img src="/assets/img/github.png" alt="GitHub" />', 'GitHub', 'github.com/abbadoha', 'Voir les projets', 'https://github.com/abbadoha')}
+      </div>
+      <div class="contact-cta-inline glass reveal" data-spotlight>
+        <div class="contact-cta-copy">
+          <strong>Poursuivre la visite</strong>
+          <span>Retrouver aussi mes projets, mes compétences et ma veille.</span>
         </div>
-        <div class="language-item">
-          <strong>Arabe</strong>
-          <span class="lang-level">Dialectal & littéraire • Notions</span>
+        <div class="cta-final-actions contact-cta-actions">
+          ${Button({ label: 'Voir mes projets', href: '/#/projects', variant: 'primary' })}
+          ${Button({ label: 'Voir mes compétences', href: '/#/skills', variant: 'outline' })}
+          ${Button({ label: 'Voir ma veille', href: '/#/watch', variant: 'ghost' })}
         </div>
       </div>
     </div>
-    
-    <div class="interest-card">
-      <div class="interest-icon">🥋</div>
-      <h3>Taekwondo</h3>
-      <p><strong>8 ans de pratique</strong></p>
-      <p>Discipline, persévérance, dépassement de soi. Compétitions régionales, ceinture avancée.</p>
-      <p class="interest-values">Valeurs : Rigueur • Respect • Concentration</p>
-    </div>
-    
-    <div class="interest-card">
-      <div class="interest-icon">📚</div>
-      <h3>Lecture</h3>
-      <p><strong>Passionnée de livres</strong></p>
-      <p>Littérature technique (cybersécurité, réseaux), science-fiction, développement personnel.</p>
-      <p class="interest-values">Apprentissage continu • Curiosité intellectuelle</p>
-    </div>
-    
-    <div class="interest-card">
-      <div class="interest-icon">✈️</div>
-      <h3>Voyages</h3>
-      <p><strong>Découverte culturelle</strong></p>
-      <p>Voyages en Europe et Maghreb, ouverture d'esprit, adaptation environnements variés.</p>
-      <p class="interest-values">Adaptabilité • Communication interculturelle</p>
-    </div>
-  </div>
-</section>
-
-<!-- CTA final -->
-<section class="page-cta glass">
-  <h3>Intéressé(e) par mon profil ?</h3>
-  <p>Discutons de vos besoins en administration systèmes et réseaux</p>
-  <a href="/#/contact" class="btn btn-primary">Me contacter</a>
+  </section>
 </section>
   `;
 }

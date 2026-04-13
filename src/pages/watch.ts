@@ -1,247 +1,344 @@
-// src/pages/watch.ts
-// Page Veille technologique & cybersécurité — BTS SIO SISR
+type ToolItem = {
+  title: string;
+  icon: string;
+};
 
-import Icons from '../components/icons';
-import { veilleCategories, ficheVeilleTemplate, type VeilleResource } from '../data/veille';
+type SimpleCard = {
+  title: string;
+  text: string;
+  icon: string;
+};
 
-// Render resource card
-function renderResourceCard(resource: VeilleResource): string {
-  const typeColors: Record<string, string> = {
-    'RSS': 'background: linear-gradient(135deg, #f59e0b, #d97706); color: white;',
-    'PDF': 'background: linear-gradient(135deg, #ef4444, #dc2626); color: white;',
-    'Page Web': 'background: linear-gradient(135deg, #3b82f6, #2563eb); color: white;',
-    'API': 'background: linear-gradient(135deg, #8b5cf6, #7c3aed); color: white;',
-    'GitHub': 'background: linear-gradient(135deg, #6366f1, #4f46e5); color: white;'
-  };
+type SourceCard = {
+  title: string;
+  url: string;
+  logo: string;
+  desc: string;
+};
 
-  return `
-    <div class="download-card reveal">
-      <div class="resource-type-badge" style="${typeColors[resource.type] || ''}">
-        ${resource.type}
-      </div>
-      <h3>${resource.title}</h3>
-      <p>${resource.description}</p>
-      ${resource.updateFrequency ? `<p class="resource-frequency">🔄 ${resource.updateFrequency}</p>` : ''}
-      <div class="resource-actions">
-        <a href="${resource.url}" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-          ${Icons.ExternalLink({ size: 18 })}
-          Accéder
-        </a>
-        <a href="${resource.url}" class="link-secondary" target="_blank" rel="noopener noreferrer">
-          ${Icons.ChevronRight({ size: 16 })}
-          Consulter en ligne
-        </a>
-      </div>
-    </div>
-  `;
-}
+const openIcon = '<span class="veille-ext-icon" aria-hidden="true">&#8599;</span>';
 
-// Render accordion for fiche modèle
-function renderFicheModele(): string {
-  return `
-    <div class="accordion">
-      <button class="accordion-trigger" aria-expanded="false">
-        <span>${Icons.FileText({ size: 24, className: 'icon-inline' })} ${ficheVeilleTemplate.title}</span>
-        <span class="accordion-icon">+</span>
-      </button>
-      <div class="accordion-content">
-        <div class="fiche-template">
-          ${ficheVeilleTemplate.sections.map(section => `
-            <div class="fiche-section">
-              <h4>${section.title}</h4>
-              ${section.fields ? `
-                <ul>
-                  ${section.fields.map(field => `<li>${field}</li>`).join('')}
-                </ul>
-              ` : ''}
-              ${section.content ? `<p class="fiche-content">${section.content.trim()}</p>` : ''}
-            </div>
-          `).join('')}
-          <div class="fiche-footer">
-            <p><strong>💾 Format recommandé :</strong> Document Word/PDF ou fichier Markdown dans dépôt Git personnel</p>
-            <p><strong>📊 Fréquence :</strong> 1 à 2 fiches par semaine minimum (objectif BTS SIO)</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  `;
-}
+const iconRss = `
+  <svg viewBox="0 0 64 64" aria-hidden="true">
+    <circle cx="18" cy="46" r="6" fill="currentColor" />
+    <path d="M14 28C26 28 36 38 36 50" stroke="currentColor" stroke-width="6" stroke-linecap="round" />
+    <path d="M14 16C33 16 48 31 48 50" stroke="currentColor" stroke-width="6" stroke-linecap="round" />
+  </svg>
+`;
+
+const iconBell = `
+  <svg viewBox="0 0 64 64" aria-hidden="true">
+    <path d="M32 12C23.7 12 17 18.7 17 27V36L12 43H52L47 36V27C47 18.7 40.3 12 32 12Z" fill="currentColor" />
+    <path d="M26 48C27.3 51.5 29.2 53 32 53C34.8 53 36.7 51.5 38 48" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+  </svg>
+`;
+
+const iconOfficial = `
+  <svg viewBox="0 0 64 64" aria-hidden="true">
+    <path d="M14 18H50V46H14V18Z" fill="none" stroke="currentColor" stroke-width="5" />
+    <path d="M14 24H50" stroke="currentColor" stroke-width="5" />
+    <circle cx="20" cy="21" r="2" fill="currentColor" />
+    <circle cx="26" cy="21" r="2" fill="currentColor" />
+    <path d="M22 34H42" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+    <path d="M22 41H36" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+  </svg>
+`;
+
+const iconFunnel = `
+  <svg viewBox="0 0 64 64" aria-hidden="true">
+    <path d="M12 16H52L39 31V45L25 52V31L12 16Z" fill="currentColor" />
+  </svg>
+`;
+
+const iconSearch = `
+  <svg viewBox="0 0 64 64" aria-hidden="true">
+    <circle cx="27" cy="27" r="14" fill="none" stroke="currentColor" stroke-width="6" />
+    <path d="M38 38L50 50" stroke="currentColor" stroke-width="6" stroke-linecap="round" />
+    <path d="M21 27H33" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+    <path d="M27 21V33" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+  </svg>
+`;
+
+const iconFolder = `
+  <svg viewBox="0 0 64 64" aria-hidden="true">
+    <path d="M10 20C10 16.7 12.7 14 16 14H28L34 20H48C51.3 20 54 22.7 54 26V44C54 47.3 51.3 50 48 50H16C12.7 50 10 47.3 10 44V20Z" fill="currentColor" />
+    <path d="M18 31H46" stroke="#0E1129" stroke-width="4" stroke-linecap="round" />
+    <path d="M18 38H38" stroke="#0E1129" stroke-width="4" stroke-linecap="round" />
+  </svg>
+`;
+
+const iconShield = `
+  <svg viewBox="0 0 64 64" aria-hidden="true">
+    <path d="M32 10L49 17V30C49 41.5 41.8 50.4 32 54C22.2 50.4 15 41.5 15 30V17L32 10Z" fill="currentColor" />
+    <path d="M25 31L30 36L40 25" stroke="#0E1129" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+`;
+
+const iconLocks = `
+  <svg viewBox="0 0 64 64" aria-hidden="true">
+    <rect x="17" y="28" width="30" height="22" rx="6" fill="currentColor" />
+    <path d="M23 28V22C23 17 27 13 32 13C37 13 41 17 41 22V28" stroke="currentColor" stroke-width="5" stroke-linecap="round" />
+    <circle cx="32" cy="39" r="4" fill="#0E1129" />
+  </svg>
+`;
+
+const iconMonitor = `
+  <svg viewBox="0 0 64 64" aria-hidden="true">
+    <rect x="12" y="14" width="40" height="26" rx="4" fill="currentColor" />
+    <path d="M32 40V49" stroke="currentColor" stroke-width="5" stroke-linecap="round" />
+    <path d="M22 50H42" stroke="currentColor" stroke-width="5" stroke-linecap="round" />
+    <path d="M20 23L27 30L34 24L42 30" stroke="#0E1129" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+  </svg>
+`;
+
+const iconTriangle = `
+  <svg viewBox="0 0 64 64" aria-hidden="true">
+    <path d="M32 12L52 48H12L32 12Z" fill="currentColor" />
+    <path d="M32 24V35" stroke="#0E1129" stroke-width="5" stroke-linecap="round" />
+    <circle cx="32" cy="42" r="3" fill="#0E1129" />
+  </svg>
+`;
+
+const iconNodes = `
+  <svg viewBox="0 0 64 64" aria-hidden="true">
+    <circle cx="16" cy="32" r="6" fill="currentColor" />
+    <circle cx="32" cy="18" r="6" fill="currentColor" opacity="0.92" />
+    <circle cx="32" cy="46" r="6" fill="currentColor" opacity="0.86" />
+    <circle cx="48" cy="32" r="6" fill="currentColor" opacity="0.8" />
+    <path d="M21 29L27 23" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+    <path d="M21 35L27 41" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+    <path d="M37 23L43 29" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+    <path d="M37 41L43 35" stroke="currentColor" stroke-width="4" stroke-linecap="round" />
+  </svg>
+`;
+
+const tools: ToolItem[] = [
+  { title: 'Feedly', icon: iconRss },
+  { title: 'Inoreader', icon: iconOfficial },
+  { title: 'Google Alerts', icon: iconBell },
+  { title: 'Pearltrees', icon: iconNodes },
+];
+
+const methodCards: SimpleCard[] = [
+  {
+    title: 'Collecte',
+    text: 'Je regroupe les informations via flux RSS, sites officiels et alertes ciblees.',
+    icon: iconRss,
+  },
+  {
+    title: 'Tri',
+    text: 'Je selectionne uniquement les contenus utiles a mon sujet de veille et a mon perimetre SISR.',
+    icon: iconFunnel,
+  },
+  {
+    title: 'Analyse',
+    text: 'Je verifie les risques, les systemes concernes, l impact possible et les recommandations de protection.',
+    icon: iconSearch,
+  },
+  {
+    title: 'Synthese',
+    text: 'Je classe mes sources dans Pearltrees et j en tire une synthese courte et exploitable.',
+    icon: iconFolder,
+  },
+];
+
+const riskCards: SimpleCard[] = [
+  {
+    title: 'Multiplication des points d entree',
+    text: 'La 5G augmente le nombre d equipements connectes en entreprise : objets mobiles, capteurs, terminaux et services distants. Cette ouverture elargit la surface d attaque si les equipements sont mal configures ou insuffisamment proteges.',
+    icon: iconNodes,
+  },
+  {
+    title: 'Virtualisation du reseau',
+    text: 'La 5G s appuie davantage sur des fonctions reseau virtualisees et logicielles. Cette souplesse ameliore les usages mais cree aussi de nouveaux risques si les environnements virtualises, les orchestrations ou les interconnexions sont mal securises.',
+    icon: iconMonitor,
+  },
+  {
+    title: 'Exposition des usages critiques',
+    text: 'La 5G peut transporter des usages sensibles en entreprise : production, acces distant, objets connectes, supervision. Une faille ou une mauvaise segmentation peut alors avoir un impact plus important sur le systeme d information.',
+    icon: iconOfficial,
+  },
+];
+
+const solutionCards: SimpleCard[] = [
+  {
+    title: 'Cloisonnement et segmentation',
+    text: 'La premiere protection consiste a separer les usages, les equipements et les services afin de limiter la propagation d un incident. Une bonne segmentation reduit les mouvements lateraux dans le SI.',
+    icon: iconShield,
+  },
+  {
+    title: 'Controle d acces renforce',
+    text: 'L authentification forte, la gestion rigoureuse des droits et une logique Zero Trust permettent de mieux securiser les acces aux ressources exposees via des environnements connectes.',
+    icon: iconLocks,
+  },
+  {
+    title: 'Supervision et mises a jour',
+    text: 'Les journaux, les alertes, la surveillance continue et l application rapide des correctifs sont essentiels pour detecter une anomalie et reduire l exploitation d une vulnerabilite.',
+    icon: iconMonitor,
+  },
+];
+
+const sourceCards: SourceCard[] = [
+  {
+    title: 'ANSSI',
+    url: 'https://www.ssi.gouv.fr/',
+    logo: iconOfficial,
+    desc: 'Reference francaise pour les guides, recommandations et bonnes pratiques de cybersecurite.',
+  },
+  {
+    title: 'CERT-FR',
+    url: 'https://www.cert.ssi.gouv.fr/',
+    logo: iconShield,
+    desc: 'Source officielle pour les alertes, avis et vulnerabilites affectant les systemes et services exposes.',
+  },
+  {
+    title: 'ENISA',
+    url: 'https://www.enisa.europa.eu/',
+    logo: iconNodes,
+    desc: 'Agence europeenne utile pour les analyses et publications liees a la cybersecurite et aux reseaux 5G.',
+  },
+  {
+    title: 'ARCEP',
+    url: 'https://www.arcep.fr/',
+    logo: iconRss,
+    desc: 'Source utile pour comprendre le cadre, les usages et les enjeux lies a la 5G en France.',
+  },
+  {
+    title: 'CISA',
+    url: 'https://www.cisa.gov/',
+    logo: iconTriangle,
+    desc: 'Source internationale utile pour suivre les vulnerabilites prioritaires et les recommandations de protection.',
+  },
+];
+
+const renderSimpleCards = (items: SimpleCard[], className = '') =>
+  items
+    .map(
+      item => `
+        <article class="veille-mini-card ${className}">
+          <span class="veille-icon-shell">${item.icon}</span>
+          <h3>${item.title}</h3>
+          <p>${item.text}</p>
+        </article>
+      `,
+    )
+    .join('');
 
 export default function Watch() {
   return `
-<section class="page-hero">
-  <div class="icon-hero">${Icons.Radar({ size: 64, color: 'var(--color-primary)' })}</div>
-  <h1>Veille technologique & cybersécurité</h1>
-  <p>BTS SIO option SISR — Sources officielles et méthodologie</p>
-</section>
+    <section class="veille-v2">
+      <section class="veille-block veille-hero reveal">
+        <div class="veille-hero-content">
+          <span class="veille-eyebrow">BTS SIO SISR</span>
+          <h1>Veille technologique & cybersecurite</h1>
+          <p class="veille-sub">Quels sont les nouveaux risques de cybersecurite lies aux reseaux 5G et comment les entreprises peuvent-elles s en proteger ?</p>
+          <p class="veille-intro">Cette veille me permet de suivre les vulnerabilites, les risques lies a la 5G et les solutions de protection utiles en entreprise.</p>
+          <div class="veille-badges">
+            <span class="veille-chip">Sources officielles</span>
+            <span class="veille-chip">Methode simple</span>
+            <span class="veille-chip">Organisation Pearltrees</span>
+          </div>
+        </div>
+      </section>
 
-<section class="page-content glass reveal">
-  <h2>🎯 Objectif & méthode de veille</h2>
-  <p>La veille technologique est une compétence transversale essentielle du BTS SIO SISR. Elle consiste à <strong>surveiller activement les évolutions technologiques, vulnérabilités et bonnes pratiques</strong> pour maintenir la sécurité et la performance des infrastructures IT.</p>
-  
-  <div class="veille-method">
-    <div class="method-step">
-      <div class="step-number">1</div>
-      <div class="step-content">
-        <strong>Collecte</strong>
-        <p>Surveiller flux RSS, sites officiels (CERT-FR, Microsoft, CISA), newsletters spécialisées</p>
-      </div>
-    </div>
-    <div class="method-step">
-      <div class="step-number">2</div>
-      <div class="step-content">
-        <strong>Tri & Analyse</strong>
-        <p>Sélectionner informations pertinentes pour contexte PME/collectivité, évaluer criticité</p>
-      </div>
-    </div>
-    <div class="method-step">
-      <div class="step-number">3</div>
-      <div class="step-content">
-        <strong>Synthèse</strong>
-        <p>Rédiger fiche de veille structurée (sujet, impact, actions, références)</p>
-      </div>
-    </div>
-    <div class="method-step">
-      <div class="step-number">4</div>
-      <div class="step-content">
-        <strong>Partage</strong>
-        <p>Diffuser veille équipe IT, documenter, archiver pour référence future</p>
-      </div>
-    </div>
-  </div>
+      <section class="veille-block reveal">
+          <article class="veille-embed-card">
+            <div class="veille-section-head">
+              <h2>Pearltrees</h2>
+            </div>
+            <div class="veille-pearltrees-preview" aria-label="Apercu Pearltrees">
+              <div class="veille-pearltrees-frame-head" aria-hidden="true">
+                <span></span>
+                <span></span>
+                <span></span>
+                <small>pearltrees.com/chamsabbassi</small>
+              </div>
+              <iframe
+                src="https://www.pearltrees.com/chamsabbassi"
+                title="Apercu Pearltrees"
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+                class="veille-pearltrees-iframe"
+              ></iframe>
+            </div>
+            <a href="https://www.pearltrees.com/chamsabbassi" target="_blank" rel="noreferrer noopener" class="veille-btn">Ouvrir mon Pearltrees ${openIcon}</a>
+          </article>
+      </section>
 
-  <p><strong>Fréquence recommandée :</strong> 1 à 2 sessions de veille par semaine (30-60 min) · Production : 1-2 fiches/semaine</p>
-</section>
+      <section class="veille-block reveal">
+        <div class="veille-section-head">
+          <h2>Methode simple</h2>
+        </div>
+        <div class="veille-card-grid veille-card-grid-4">
+          ${renderSimpleCards(methodCards)}
+        </div>
+        <div class="veille-tool-strip">
+          <span class="veille-strip-label">Outils utilises</span>
+          <div class="veille-tool-icons" aria-label="Outils de veille">
+            ${tools
+              .map(
+                tool => `
+                  <article class="veille-tool-pill" title="${tool.title}" aria-label="${tool.title}">
+                    <span class="veille-tool-icon">${tool.icon}</span>
+                    <strong>${tool.title}</strong>
+                  </article>
+                `,
+              )
+              .join('')}
+          </div>
+        </div>
+      </section>
 
-<section class="page-content glass reveal">
-  <h2>🔍 Périmètre SISR surveillé</h2>
-  <div class="perimetre-grid">
-    <div class="perimetre-item">
-      <div class="perimetre-icon">🪟</div>
-      <strong>Systèmes Windows</strong>
-      <p>Vulnérabilités Windows Server, Active Directory, GPO, patch management Microsoft</p>
-    </div>
-    <div class="perimetre-item">
-      <div class="perimetre-icon">🐧</div>
-      <strong>Systèmes Linux</strong>
-      <p>Advisories Debian/Ubuntu, durcissement, services critiques (SSH, Apache, nginx)</p>
-    </div>
-    <div class="perimetre-item">
-      <div class="perimetre-icon">🌐</div>
-      <strong>Réseaux & Sécurité</strong>
-      <p>Vulnérabilités équipements Cisco, pfSense, VPN, pare-feu, segmentation VLAN</p>
-    </div>
-    <div class="perimetre-item">
-      <div class="perimetre-icon">☁️</div>
-      <strong>Virtualisation</strong>
-      <p>VMware ESXi, Hyper-V, Docker, orchestration, sécurité hyperviseurs</p>
-    </div>
-    <div class="perimetre-item">
-      <div class="perimetre-icon">📊</div>
-      <strong>Supervision</strong>
-      <p>Outils monitoring (Nagios, Zabbix), SIEM basics, détection incidents, logs</p>
-    </div>
-    <div class="perimetre-item">
-      <div class="perimetre-icon">💾</div>
-      <strong>Sauvegarde & PRA</strong>
-      <p>Stratégies 3-2-1, ransomware protection, continuité d'activité, tests restauration</p>
-    </div>
-  </div>
-</section>
+      <section class="veille-block reveal">
+        <div class="veille-section-head">
+          <h2>Risques 5G</h2>
+        </div>
+        <div class="veille-card-grid veille-card-grid-3">
+          ${renderSimpleCards(riskCards, 'veille-risk-card')}
+        </div>
+        <p class="veille-section-note">Ma veille montre que les risques 5G ne viennent pas uniquement du reseau mobile, mais aussi de l integration de la 5G dans des infrastructures d entreprise plus ouvertes, connectees et virtualisees.</p>
+      </section>
 
-<section class="page-content glass reveal">
-  <h2>📚 Bibliothèque de sources officielles</h2>
-  <p>Sélection de sources <strong>institutionnelles et éditeurs majeurs</strong> couvrant l'ensemble du périmètre SISR. Toutes les sources sont officielles, gratuites et régulièrement mises à jour.</p>
-</section>
+      <section class="veille-block reveal">
+        <div class="veille-section-head">
+          <h2>Solutions</h2>
+        </div>
+        <div class="veille-card-grid veille-card-grid-3">
+          ${renderSimpleCards(solutionCards, 'veille-solution-card')}
+        </div>
+        <p class="veille-section-note">Les principales protections retenues dans ma veille sont le cloisonnement reseau, le controle d acces, les mises a jour regulieres et la supervision continue.</p>
+      </section>
 
-${veilleCategories.map(category => `
-<section class="page-content glass reveal">
-  <div class="category-header">
-    <span class="category-icon">${category.icon}</span>
-    <div>
-      <h3>${category.title}</h3>
-      <p class="category-description">${category.description}</p>
-    </div>
-  </div>
-  <div class="downloads-grid">
-    ${category.resources.map(resource => renderResourceCard(resource)).join('')}
-  </div>
-</section>
-`).join('')}
+      <section class="veille-block reveal">
+        <div class="veille-section-head">
+          <h2>Sources essentielles</h2>
+        </div>
+        <div class="veille-sources-compact-grid">
+          ${sourceCards
+            .map(
+              source => `
+                <article class="veille-source-card-compact">
+                  <span class="veille-source-logo">${source.logo}</span>
+                  <h3>${source.title}</h3>
+                  <p>${source.desc}</p>
+                  <a href="${source.url}" target="_blank" rel="noreferrer noopener" class="veille-btn">Acceder ${openIcon}</a>
+                </article>
+              `,
+            )
+            .join('')}
+        </div>
+      </section>
 
-<section class="page-content glass reveal">
-  <h2>📝 Modèle de fiche de veille</h2>
-  <p>Template structuré pour produire des fiches de veille conformes aux attentes BTS SIO. Cliquez pour déplier le modèle complet.</p>
-  ${renderFicheModele()}
-</section>
-
-<section class="page-content glass reveal">
-  <h2>💡 Conseils & bonnes pratiques</h2>
-  <div class="tips-grid">
-    <div class="tip-card">
-      <h4>🎯 Prioriser</h4>
-      <p>Se concentrer sur vulnérabilités critiques (CVSS > 7.0) et systèmes réellement déployés dans votre environnement</p>
-    </div>
-    <div class="tip-card">
-      <h4>⏱️ Réactivité</h4>
-      <p>Les vulnérabilités zero-day ou exploitées activement (CISA KEV) nécessitent une action sous 48-72h</p>
-    </div>
-    <div class="tip-card">
-      <h4>📋 Traçabilité</h4>
-      <p>Archiver toutes fiches de veille (dépôt Git, wiki interne) pour historique et audits</p>
-    </div>
-    <div class="tip-card">
-      <h4>🤝 Collaboration</h4>
-      <p>Partager veille avec équipe IT, communiquer actions entreprises, documenter décisions</p>
-    </div>
-    <div class="tip-card">
-      <h4>🔄 Automatisation</h4>
-      <p>Utiliser agrégateurs RSS (Feedly, Inoreader) ou scripts Python pour centraliser flux</p>
-    </div>
-    <div class="tip-card">
-      <h4>📊 Métriques</h4>
-      <p>Suivre indicateurs : nombre fiches/mois, délai patch critique, couverture périmètre</p>
-    </div>
-  </div>
-</section>
-
-<section class="page-content glass reveal">
-  <h2>🔗 Ressources complémentaires</h2>
-  <div class="complementary-resources">
-    <div class="resource-group">
-      <strong>🎓 Formations gratuites</strong>
-      <ul>
-        <li><a href="https://secnumacademie.gouv.fr/" target="_blank" rel="noopener noreferrer" class="link-secondary">${Icons.ExternalLink({ size: 16 })} SecNumAcadémie (ANSSI)</a></li>
-        <li><a href="https://www.cisa.gov/resources-tools/resources/free-cybersecurity-services-and-tools" target="_blank" rel="noopener noreferrer" class="link-secondary">${Icons.ExternalLink({ size: 16 })} CISA Free Cyber Tools</a></li>
-        <li><a href="https://www.sans.org/blog/" target="_blank" rel="noopener noreferrer" class="link-secondary">${Icons.ExternalLink({ size: 16 })} SANS Cybersecurity Blog</a></li>
-      </ul>
-    </div>
-    <div class="resource-group">
-      <strong>🛠️ Outils veille</strong>
-      <ul>
-        <li><a href="https://feedly.com/" target="_blank" rel="noopener noreferrer" class="link-secondary">${Icons.ExternalLink({ size: 16 })} Feedly (agrégateur RSS)</a></li>
-        <li><a href="https://www.inoreader.com/" target="_blank" rel="noopener noreferrer" class="link-secondary">${Icons.ExternalLink({ size: 16 })} Inoreader</a></li>
-        <li><a href="https://vulners.com/" target="_blank" rel="noopener noreferrer" class="link-secondary">${Icons.ExternalLink({ size: 16 })} Vulners (moteur recherche CVE)</a></li>
-      </ul>
-    </div>
-    <div class="resource-group">
-      <strong>📰 Médias spécialisés</strong>
-      <ul>
-        <li><a href="https://www.bleepingcomputer.com/" target="_blank" rel="noopener noreferrer" class="link-secondary">${Icons.ExternalLink({ size: 16 })} BleepingComputer</a></li>
-        <li><a href="https://thehackernews.com/" target="_blank" rel="noopener noreferrer" class="link-secondary">${Icons.ExternalLink({ size: 16 })} The Hacker News</a></li>
-        <li><a href="https://www.lemondeinformatique.fr/securite/" target="_blank" rel="noopener noreferrer" class="link-secondary">${Icons.ExternalLink({ size: 16 })} Le Monde Informatique — Sécurité</a></li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<section class="page-cta glass reveal">
-  <h3>Besoin d'aide pour organiser votre veille ?</h3>
-  <p>N'hésitez pas à me contacter pour échanger sur méthodologie, outils ou partage d'expérience</p>
-  <div class="cta-buttons">
-    <a href="/#/contact" class="btn btn-primary">Me contacter</a>
-    <a href="/#/downloads" class="btn btn-secondary">Télécharger mes fiches</a>
-  </div>
-</section>
+      <section class="veille-block reveal veille-conclusion-block">
+        <div class="veille-section-head">
+          <h2>Conclusion de ma veille</h2>
+        </div>
+        <div class="veille-conclusion-grid">
+          <p>La 5G apporte de nouvelles possibilites aux entreprises, mais elle augmente aussi les risques de cybersecurite a cause de l augmentation des equipements connectes, de la virtualisation et des echanges reseau plus nombreux.</p>
+          <p>Les entreprises doivent renforcer leur protection avec le cloisonnement reseau, le controle des acces, les mises a jour, la supervision et la reduction de l exposition des equipements.</p>
+          <p>Cette veille me permet de mieux comprendre ces enjeux actuels et de developper des reflexes utiles dans un profil BTS SIO SISR.</p>
+        </div>
+      </section>
+    </section>
   `;
 }

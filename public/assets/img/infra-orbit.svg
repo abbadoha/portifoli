@@ -1,0 +1,30 @@
+<svg width="520" height="380" viewBox="0 0 520 380" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g1" x1="80" y1="40" x2="440" y2="330" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A259FF" />
+      <stop offset="0.5" stop-color="#6F7CFF" />
+      <stop offset="1" stop-color="#25D6D2" />
+    </linearGradient>
+    <radialGradient id="g2" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(260 180) rotate(90) scale(140 180)">
+      <stop stop-color="#A259FF" stop-opacity="0.28" />
+      <stop offset="1" stop-color="#A259FF" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+  <rect x="18" y="18" width="484" height="344" rx="28" fill="#0A0817" fill-opacity="0.78" stroke="#8E66FF" stroke-opacity="0.18"/>
+  <circle cx="260" cy="180" r="122" stroke="url(#g1)" stroke-opacity="0.18" />
+  <circle cx="260" cy="180" r="90" stroke="url(#g1)" stroke-opacity="0.18" stroke-dasharray="5 8"/>
+  <circle cx="260" cy="180" r="64" fill="url(#g2)"/>
+  <path d="M192 194C192 171.909 209.909 154 232 154H288C310.091 154 328 171.909 328 194V196C328 205.941 319.941 214 310 214H210C200.059 214 192 205.941 192 196V194Z" fill="#101022" stroke="url(#g1)" stroke-width="3"/>
+  <rect x="219" y="214" width="82" height="54" rx="12" fill="#0E0D20" stroke="#8B72FF" stroke-opacity="0.45"/>
+  <path d="M235 228H286" stroke="#25D6D2" stroke-width="3" stroke-linecap="round"/>
+  <path d="M235 241H286" stroke="#A259FF" stroke-width="3" stroke-linecap="round"/>
+  <path d="M235 254H272" stroke="#6F7CFF" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="196" cy="92" r="8" fill="#25D6D2" fill-opacity="0.9"/>
+  <circle cx="338" cy="84" r="7" fill="#A259FF" fill-opacity="0.9"/>
+  <circle cx="374" cy="256" r="8" fill="#6F7CFF" fill-opacity="0.9"/>
+  <circle cx="152" cy="250" r="7" fill="#FF56D8" fill-opacity="0.88"/>
+  <path d="M196 92C224 112 230 130 232 154" stroke="url(#g1)" stroke-opacity="0.5" stroke-width="2"/>
+  <path d="M338 84C312 106 296 124 288 154" stroke="url(#g1)" stroke-opacity="0.5" stroke-width="2"/>
+  <path d="M374 256C346 245 322 236 301 228" stroke="url(#g1)" stroke-opacity="0.5" stroke-width="2"/>
+  <path d="M152 250C175 243 197 235 219 228" stroke="url(#g1)" stroke-opacity="0.5" stroke-width="2"/>
+</svg>

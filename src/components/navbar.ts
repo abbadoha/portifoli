@@ -5,16 +5,13 @@ export function renderNavbar() {
   const navLinks = [
     { path: '/home', label: 'Accueil' },
     { path: '/profile', label: 'Profil' },
-    { path: '/cv', label: 'CV' },
     { path: '/parcours', label: 'Parcours' },
     { path: '/stages', label: 'Stages' },
-    { path: '/rapport-stage', label: 'Rapport de stage' },
-    { path: '/certifications', label: 'Certifications' },
     { path: '/skills', label: 'Compétences' },
     { path: '/projects', label: 'Projets' },
-    { path: '/bts-sio', label: 'BTS SIO' },
-    { path: '/programme', label: 'Programme' },
     { path: '/watch', label: 'Veille' },
+    { path: '/bts-sio', label: 'BTS SIO' },
+    { path: '/exams', label: 'Épreuve E5' },
     { path: '/downloads', label: 'Téléchargements' },
     { path: '/contact', label: 'Contact' },
   ];

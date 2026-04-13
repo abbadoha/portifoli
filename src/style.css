@@ -32,7 +32,7 @@ html, body {
 }
 
 body {
-  background: var(--color-bg) url('/assets/img/ambient.gif') center/cover no-repeat fixed;
+  background: var(--color-bg) url('/assets/img/fond.gif') center/cover no-repeat fixed;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
